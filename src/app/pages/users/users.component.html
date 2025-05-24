@@ -1,0 +1,111 @@
+<mat-tab-group>
+
+    <mat-tab label="Табела">
+  
+      <br>
+      <br>
+  
+      <form  [formGroup]="searchForm" #searchNgForm="ngForm">
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Име на производ: </mat-label>
+          <input matInput type="text" [formControlName]="'name'"
+              [(ngModel)]="name">
+        </mat-form-field>
+  
+        <button (click)="getAll()" mat-raised-button color="primary">
+          <mat-icon>search</mat-icon>
+          Пребарај
+        </button>
+        
+        <button (click)="searchForm.reset(); name = ''" mat-raised-button color="primary">
+          <mat-icon>clear</mat-icon>
+          Ресетирај филтри
+        </button>
+  
+      </form>
+  
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+      
+          <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef> Username </th>
+            <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="surname">
+            <th mat-header-cell *matHeaderCellDef> Surname </th>
+            <td mat-cell *matCellDef="let element"> {{element.surname}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="roleName">
+            <th mat-header-cell *matHeaderCellDef> Role name </th>
+            <td mat-cell *matCellDef="let element"> {{element.roleName}} </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+  
+        <mat-paginator
+          [length]="totalItems"
+          [pageSizeOptions]="[5, 10, 20, 50, 100]"
+          [pageIndex]="0"
+          [pageSize]="10"
+          (page)="getAll()"
+          showFirstLastButtons
+          aria-label="Select page of periodic elements">
+        </mat-paginator>
+        
+      </div>
+  
+    </mat-tab>
+  
+    <mat-tab label="Графикон">
+      
+      <br>
+      <br>
+  
+      <!--The content below is only a placeholder and can be replaced.-->
+      <div id="chart">
+        <apx-chart
+          [series]="chartOptions.series!"
+          [chart]="chartOptions.chart!"
+          [labels]="chartOptions.labels!"
+          [responsive]="chartOptions.responsive!"
+        ></apx-chart>
+      </div>
+
+      <!-- <button (click)="getAllForPieChart('profit')" mat-raised-button color="primary">
+        <mat-icon>attach_money</mat-icon>
+        Профит
+      </button>
+    
+      <button (click)="getAllForPieChart('sumOfTotalSalePrice')" mat-raised-button color="primary">
+        <mat-icon>money</mat-icon>
+        Приход
+      </button>
+    
+      <button (click)="getAllForPieChart('sumOfSales')" mat-raised-button color="primary">
+        <mat-icon>transform</mat-icon>
+        Број на трансакции
+      </button>
+    
+      <button (click)="getAllForPieChart('sumOfUnits')" mat-raised-button color="primary">
+        <mat-icon>laptop</mat-icon>
+        Продаени единици
+      </button> -->
+
+    </mat-tab>
+  
+  </mat-tab-group>
