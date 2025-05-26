@@ -9,8 +9,8 @@
   
         <mat-form-field appearance="outline">
           <mat-label>Име на производ: </mat-label>
-          <input matInput type="text" [formControlName]="'name'"
-              [(ngModel)]="name">
+          <input matInput type="text" [formControlName]="'fullName'"
+              [(ngModel)]="fullName">
         </mat-form-field>
   
         <button (click)="getAll()" mat-raised-button color="primary">
@@ -18,7 +18,7 @@
           Пребарај
         </button>
         
-        <button (click)="searchForm.reset(); name = ''" mat-raised-button color="primary">
+        <button (click)="searchForm.reset(); fullName = ''; roleId = undefined" mat-raised-button color="primary">
           <mat-icon>clear</mat-icon>
           Ресетирај филтри
         </button>
@@ -77,14 +77,14 @@
       <br>
   
       <!--The content below is only a placeholder and can be replaced.-->
-      <div id="chart">
+      <!-- <div id="chart">
         <apx-chart
           [series]="chartOptions.series!"
           [chart]="chartOptions.chart!"
           [labels]="chartOptions.labels!"
           [responsive]="chartOptions.responsive!"
         ></apx-chart>
-      </div>
+      </div> -->
 
       <!-- <button (click)="getAllForPieChart('profit')" mat-raised-button color="primary">
         <mat-icon>attach_money</mat-icon>

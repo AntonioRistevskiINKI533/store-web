@@ -199,7 +199,7 @@ export class ApiClient {
      * @param pageSize (optional) 
      * @return Success
      */
-    getAllCompaniesPaged(pageIndex: number | undefined, pageSize: number | undefined): Observable<CompanyDataPagedModelActionResult> {
+    getAllCompaniesPaged(pageIndex: number | undefined, pageSize: number | undefined): Observable<CompanyDataPagedModel> {
         let url_ = this.baseUrl + "/Company/GetAllCompaniesPaged?";
         if (pageIndex === null)
             throw new Error("The parameter 'pageIndex' cannot be null.");
@@ -226,14 +226,14 @@ export class ApiClient {
                 try {
                     return this.processGetAllCompaniesPaged(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<CompanyDataPagedModelActionResult>;
+                    return _observableThrow(e) as any as Observable<CompanyDataPagedModel>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<CompanyDataPagedModelActionResult>;
+                return _observableThrow(response_) as any as Observable<CompanyDataPagedModel>;
         }));
     }
 
-    protected processGetAllCompaniesPaged(response: HttpResponseBase): Observable<CompanyDataPagedModelActionResult> {
+    protected processGetAllCompaniesPaged(response: HttpResponseBase): Observable<CompanyDataPagedModel> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -244,7 +244,7 @@ export class ApiClient {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = CompanyDataPagedModelActionResult.fromJS(resultData200);
+            result200 = CompanyDataPagedModel.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -252,7 +252,7 @@ export class ApiClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<CompanyDataPagedModelActionResult>(null as any);
+        return _observableOf<CompanyDataPagedModel>(null as any);
     }
 
     /**
@@ -486,7 +486,7 @@ export class ApiClient {
      * @param productName (optional) 
      * @return Success
      */
-    getAllProductsPaged(pageIndex: number | undefined, pageSize: number | undefined, companyId: number | undefined, productName: string | undefined): Observable<ProductDataPagedModelActionResult> {
+    getAllProductsPaged(pageIndex: number | undefined, pageSize: number | undefined, companyId: number | undefined, productName: string | undefined): Observable<ProductDataPagedModel> {
         let url_ = this.baseUrl + "/Product/GetAllProductsPaged?";
         if (pageIndex === null)
             throw new Error("The parameter 'pageIndex' cannot be null.");
@@ -521,14 +521,14 @@ export class ApiClient {
                 try {
                     return this.processGetAllProductsPaged(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<ProductDataPagedModelActionResult>;
+                    return _observableThrow(e) as any as Observable<ProductDataPagedModel>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<ProductDataPagedModelActionResult>;
+                return _observableThrow(response_) as any as Observable<ProductDataPagedModel>;
         }));
     }
 
-    protected processGetAllProductsPaged(response: HttpResponseBase): Observable<ProductDataPagedModelActionResult> {
+    protected processGetAllProductsPaged(response: HttpResponseBase): Observable<ProductDataPagedModel> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -539,7 +539,7 @@ export class ApiClient {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = ProductDataPagedModelActionResult.fromJS(resultData200);
+            result200 = ProductDataPagedModel.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -547,7 +547,7 @@ export class ApiClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<ProductDataPagedModelActionResult>(null as any);
+        return _observableOf<ProductDataPagedModel>(null as any);
     }
 
     /**
@@ -782,7 +782,7 @@ export class ApiClient {
      * @param productId (optional) 
      * @return Success
      */
-    getAllProductSalesPaged(pageIndex: number | undefined, pageSize: number | undefined, dateFrom: Date | undefined, dateTo: Date | undefined, productId: number | undefined): Observable<ProductSaleDataPagedModelActionResult> {
+    getAllProductSalesPaged(pageIndex: number | undefined, pageSize: number | undefined, dateFrom: Date | undefined, dateTo: Date | undefined, productId: number | undefined): Observable<ProductSaleDataPagedModel> {
         let url_ = this.baseUrl + "/ProductSale/GetAllProductSalesPaged?";
         if (pageIndex === null)
             throw new Error("The parameter 'pageIndex' cannot be null.");
@@ -821,14 +821,14 @@ export class ApiClient {
                 try {
                     return this.processGetAllProductSalesPaged(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<ProductSaleDataPagedModelActionResult>;
+                    return _observableThrow(e) as any as Observable<ProductSaleDataPagedModel>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<ProductSaleDataPagedModelActionResult>;
+                return _observableThrow(response_) as any as Observable<ProductSaleDataPagedModel>;
         }));
     }
 
-    protected processGetAllProductSalesPaged(response: HttpResponseBase): Observable<ProductSaleDataPagedModelActionResult> {
+    protected processGetAllProductSalesPaged(response: HttpResponseBase): Observable<ProductSaleDataPagedModel> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -839,7 +839,7 @@ export class ApiClient {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = ProductSaleDataPagedModelActionResult.fromJS(resultData200);
+            result200 = ProductSaleDataPagedModel.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -847,7 +847,7 @@ export class ApiClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<ProductSaleDataPagedModelActionResult>(null as any);
+        return _observableOf<ProductSaleDataPagedModel>(null as any);
     }
 
     /**
@@ -909,7 +909,7 @@ export class ApiClient {
     /**
      * @return Success
      */
-    getAllRoles(): Observable<RoleDataListActionResult> {
+    getAllRoles(): Observable<RoleData[]> {
         let url_ = this.baseUrl + "/Role/GetAllRoles";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -928,14 +928,14 @@ export class ApiClient {
                 try {
                     return this.processGetAllRoles(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<RoleDataListActionResult>;
+                    return _observableThrow(e) as any as Observable<RoleData[]>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<RoleDataListActionResult>;
+                return _observableThrow(response_) as any as Observable<RoleData[]>;
         }));
     }
 
-    protected processGetAllRoles(response: HttpResponseBase): Observable<RoleDataListActionResult> {
+    protected processGetAllRoles(response: HttpResponseBase): Observable<RoleData[]> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -946,7 +946,14 @@ export class ApiClient {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = RoleDataListActionResult.fromJS(resultData200);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(RoleData.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -954,14 +961,14 @@ export class ApiClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<RoleDataListActionResult>(null as any);
+        return _observableOf<RoleData[]>(null as any);
     }
 
     /**
      * @param body (optional) 
      * @return Success
      */
-    login(body: LoginRequest | undefined): Observable<LoginResponseActionResult> {
+    login(body: LoginRequest | undefined): Observable<LoginResponse> {
         let url_ = this.baseUrl + "/User/Login";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -984,14 +991,14 @@ export class ApiClient {
                 try {
                     return this.processLogin(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<LoginResponseActionResult>;
+                    return _observableThrow(e) as any as Observable<LoginResponse>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<LoginResponseActionResult>;
+                return _observableThrow(response_) as any as Observable<LoginResponse>;
         }));
     }
 
-    protected processLogin(response: HttpResponseBase): Observable<LoginResponseActionResult> {
+    protected processLogin(response: HttpResponseBase): Observable<LoginResponse> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1002,7 +1009,7 @@ export class ApiClient {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = LoginResponseActionResult.fromJS(resultData200);
+            result200 = LoginResponse.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -1010,7 +1017,7 @@ export class ApiClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<LoginResponseActionResult>(null as any);
+        return _observableOf<LoginResponse>(null as any);
     }
 
     /**
@@ -1291,9 +1298,11 @@ export class ApiClient {
     /**
      * @param pageIndex (optional) 
      * @param pageSize (optional) 
+     * @param fullName (optional) 
+     * @param roleId (optional) 
      * @return Success
      */
-    getAllUsersPaged(pageIndex: number | undefined, pageSize: number | undefined): Observable<UserDataPagedModel> {
+    getAllUsersPaged(pageIndex: number | undefined, pageSize: number | undefined, fullName: string | undefined, roleId: number | undefined): Observable<UserDataPagedModel> {
         let url_ = this.baseUrl + "/User/GetAllUsersPaged?";
         if (pageIndex === null)
             throw new Error("The parameter 'pageIndex' cannot be null.");
@@ -1303,6 +1312,14 @@ export class ApiClient {
             throw new Error("The parameter 'pageSize' cannot be null.");
         else if (pageSize !== undefined)
             url_ += "pageSize=" + encodeURIComponent("" + pageSize) + "&";
+        if (fullName === null)
+            throw new Error("The parameter 'fullName' cannot be null.");
+        else if (fullName !== undefined)
+            url_ += "fullName=" + encodeURIComponent("" + fullName) + "&";
+        if (roleId === null)
+            throw new Error("The parameter 'roleId' cannot be null.");
+        else if (roleId !== undefined)
+            url_ += "roleId=" + encodeURIComponent("" + roleId) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -1764,46 +1781,6 @@ export interface ICompanyDataPagedModel {
     items?: CompanyData[] | undefined;
 }
 
-export class CompanyDataPagedModelActionResult implements ICompanyDataPagedModelActionResult {
-    result?: ActionResult;
-    value?: CompanyDataPagedModel;
-
-    constructor(data?: ICompanyDataPagedModelActionResult) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.result = _data["result"] ? ActionResult.fromJS(_data["result"]) : <any>undefined;
-            this.value = _data["value"] ? CompanyDataPagedModel.fromJS(_data["value"]) : <any>undefined;
-        }
-    }
-
-    static fromJS(data: any): CompanyDataPagedModelActionResult {
-        data = typeof data === 'object' ? data : {};
-        let result = new CompanyDataPagedModelActionResult();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
-        data["value"] = this.value ? this.value.toJSON() : <any>undefined;
-        return data;
-    }
-}
-
-export interface ICompanyDataPagedModelActionResult {
-    result?: ActionResult;
-    value?: CompanyDataPagedModel;
-}
-
 export class LoginRequest implements ILoginRequest {
     username!: string;
     password!: string;
@@ -1878,46 +1855,6 @@ export class LoginResponse implements ILoginResponse {
 
 export interface ILoginResponse {
     token?: string | undefined;
-}
-
-export class LoginResponseActionResult implements ILoginResponseActionResult {
-    result?: ActionResult;
-    value?: LoginResponse;
-
-    constructor(data?: ILoginResponseActionResult) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.result = _data["result"] ? ActionResult.fromJS(_data["result"]) : <any>undefined;
-            this.value = _data["value"] ? LoginResponse.fromJS(_data["value"]) : <any>undefined;
-        }
-    }
-
-    static fromJS(data: any): LoginResponseActionResult {
-        data = typeof data === 'object' ? data : {};
-        let result = new LoginResponseActionResult();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
-        data["value"] = this.value ? this.value.toJSON() : <any>undefined;
-        return data;
-    }
-}
-
-export interface ILoginResponseActionResult {
-    result?: ActionResult;
-    value?: LoginResponse;
 }
 
 export class ProductData implements IProductData {
@@ -2064,46 +2001,6 @@ export interface IProductDataPagedModel {
     items?: ProductData[] | undefined;
 }
 
-export class ProductDataPagedModelActionResult implements IProductDataPagedModelActionResult {
-    result?: ActionResult;
-    value?: ProductDataPagedModel;
-
-    constructor(data?: IProductDataPagedModelActionResult) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.result = _data["result"] ? ActionResult.fromJS(_data["result"]) : <any>undefined;
-            this.value = _data["value"] ? ProductDataPagedModel.fromJS(_data["value"]) : <any>undefined;
-        }
-    }
-
-    static fromJS(data: any): ProductDataPagedModelActionResult {
-        data = typeof data === 'object' ? data : {};
-        let result = new ProductDataPagedModelActionResult();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
-        data["value"] = this.value ? this.value.toJSON() : <any>undefined;
-        return data;
-    }
-}
-
-export interface IProductDataPagedModelActionResult {
-    result?: ActionResult;
-    value?: ProductDataPagedModel;
-}
-
 export class ProductSaleData implements IProductSaleData {
     id?: number;
     productId?: number;
@@ -2248,46 +2145,6 @@ export interface IProductSaleDataPagedModel {
     items?: ProductSaleData[] | undefined;
 }
 
-export class ProductSaleDataPagedModelActionResult implements IProductSaleDataPagedModelActionResult {
-    result?: ActionResult;
-    value?: ProductSaleDataPagedModel;
-
-    constructor(data?: IProductSaleDataPagedModelActionResult) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.result = _data["result"] ? ActionResult.fromJS(_data["result"]) : <any>undefined;
-            this.value = _data["value"] ? ProductSaleDataPagedModel.fromJS(_data["value"]) : <any>undefined;
-        }
-    }
-
-    static fromJS(data: any): ProductSaleDataPagedModelActionResult {
-        data = typeof data === 'object' ? data : {};
-        let result = new ProductSaleDataPagedModelActionResult();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
-        data["value"] = this.value ? this.value.toJSON() : <any>undefined;
-        return data;
-    }
-}
-
-export interface IProductSaleDataPagedModelActionResult {
-    result?: ActionResult;
-    value?: ProductSaleDataPagedModel;
-}
-
 export class RoleData implements IRoleData {
     id?: number;
     name?: string | undefined;
@@ -2326,54 +2183,6 @@ export class RoleData implements IRoleData {
 export interface IRoleData {
     id?: number;
     name?: string | undefined;
-}
-
-export class RoleDataListActionResult implements IRoleDataListActionResult {
-    result?: ActionResult;
-    value?: RoleData[] | undefined;
-
-    constructor(data?: IRoleDataListActionResult) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.result = _data["result"] ? ActionResult.fromJS(_data["result"]) : <any>undefined;
-            if (Array.isArray(_data["value"])) {
-                this.value = [] as any;
-                for (let item of _data["value"])
-                    this.value!.push(RoleData.fromJS(item));
-            }
-        }
-    }
-
-    static fromJS(data: any): RoleDataListActionResult {
-        data = typeof data === 'object' ? data : {};
-        let result = new RoleDataListActionResult();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
-        if (Array.isArray(this.value)) {
-            data["value"] = [];
-            for (let item of this.value)
-                data["value"].push(item.toJSON());
-        }
-        return data;
-    }
-}
-
-export interface IRoleDataListActionResult {
-    result?: ActionResult;
-    value?: RoleData[] | undefined;
 }
 
 export class UpdateCompanyRequest implements IUpdateCompanyRequest {
@@ -2631,6 +2440,7 @@ export class UserData implements IUserData {
     name?: string | undefined;
     surname?: string | undefined;
     roleId?: number;
+    roleName?: string | undefined;
 
     constructor(data?: IUserData) {
         if (data) {
@@ -2649,6 +2459,7 @@ export class UserData implements IUserData {
             this.name = _data["name"];
             this.surname = _data["surname"];
             this.roleId = _data["roleId"];
+            this.roleName = _data["roleName"];
         }
     }
 
@@ -2667,6 +2478,7 @@ export class UserData implements IUserData {
         data["name"] = this.name;
         data["surname"] = this.surname;
         data["roleId"] = this.roleId;
+        data["roleName"] = this.roleName;
         return data;
     }
 }
@@ -2678,6 +2490,7 @@ export interface IUserData {
     name?: string | undefined;
     surname?: string | undefined;
     roleId?: number;
+    roleName?: string | undefined;
 }
 
 export class UserDataActionResult implements IUserDataActionResult {
