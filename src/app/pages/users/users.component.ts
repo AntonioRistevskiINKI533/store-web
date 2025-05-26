@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm, FormGroup, FormBuilder } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { UserData } from 'src/app/api/client';
+import { RoleData, UserData } from 'src/app/api/client';
+import { RoleService } from 'src/app/services/role-service';
 import { UserService } from 'src/app/services/user-service';
 
 @Component({
@@ -23,9 +24,11 @@ export class UsersComponent implements OnInit {
 
   fullName: string | undefined
   roleId: number | undefined
+  roles: RoleData[]
   
   constructor(
     private _userService:UserService, 
+    private _roleService:RoleService, 
     private _formBuilder:FormBuilder,
     ) 
     { }
@@ -39,13 +42,22 @@ export class UsersComponent implements OnInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    this.getAll();
+    this.getAllUsersPaged();
+    this.getAllRoles();
   }
 
-  getAll(){
+  getAllUsersPaged(){
+    console.log('this.roleId');
+    console.log(this.roleId);
     this._userService.getAllPaged(this.paginator.pageIndex, this.paginator.pageSize, this.fullName, this.roleId).subscribe(data => {
       this.dataSource = new MatTableDataSource<UserData>(data.items!);
       this.totalItems = data.totalItems!;
+    });
+  }
+
+    getAllRoles(){
+    this._roleService.getAll().subscribe(data => {
+      this.roles = data;
     });
   }
 

@@ -8,12 +8,21 @@
       <form  [formGroup]="searchForm" #searchNgForm="ngForm">
   
         <mat-form-field appearance="outline">
-          <mat-label>Име на производ: </mat-label>
+          <mat-label>Username or full name: </mat-label>
           <input matInput type="text" [formControlName]="'fullName'"
               [(ngModel)]="fullName">
         </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Role</mat-label>
+          <mat-select [(ngModel)]="roleId" [formControlName]="'role'">
+            <mat-option *ngFor="let role of roles" [value]="role.id">
+              {{ role.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
   
-        <button (click)="getAll()" mat-raised-button color="primary">
+        <button (click)="getAllUsersPaged()" mat-raised-button color="primary">
           <mat-icon>search</mat-icon>
           Пребарај
         </button>
@@ -62,7 +71,7 @@
           [pageSizeOptions]="[5, 10, 20, 50, 100]"
           [pageIndex]="0"
           [pageSize]="10"
-          (page)="getAll()"
+          (page)="getAllUsersPaged()"
           showFirstLastButtons
           aria-label="Select page of periodic elements">
         </mat-paginator>
