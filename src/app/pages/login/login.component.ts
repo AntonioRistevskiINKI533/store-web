@@ -31,8 +31,7 @@ export class LoginComponent implements OnInit {
 
   login(){
     this._userService.login(this.body).subscribe(data => {
-      console.log('data');
-      console.log(data);
+      sessionStorage.setItem("token", data.token!);
     });
   }
 }
