@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginRequest } from 'src/app/api/client';
 import { UserService } from 'src/app/services/user-service';
@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.body = new LoginRequest();
     this.loginForm = this._formBuilder.group({
-      username: [null],
-      password: [null],
+      username: [null, [Validators.required]],
+      password: [null, [Validators.required]],
     })
   }
 
