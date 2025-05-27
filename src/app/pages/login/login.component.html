@@ -1,20 +1,32 @@
-<form  [formGroup]="loginForm" #loginNgForm="ngForm">
+<div>
+  <mat-card>
+    <form  [formGroup]="loginForm" #loginNgForm="ngForm">
 
-  <mat-form-field appearance="outline">
-    <mat-label>Username: </mat-label>
-    <input matInput type="text" [formControlName]="'username'"
-        [(ngModel)]="body.username">
-  </mat-form-field>
+      <mat-card>
+        <mat-card-content>
+          <b>Store management app</b>
+        </mat-card-content>
+      </mat-card>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Password: </mat-label>
-    <input matInput type="text" [formControlName]="'password'"
-        [(ngModel)]="body.password">
-  </mat-form-field>
+      <br>
 
-  <button (click)="login()" mat-raised-button color="primary">
-    <mat-icon>search</mat-icon>
-    Login
-  </button>
+      <mat-form-field appearance="outline">
+        <mat-label>Username: </mat-label>
+        <input matInput type="text" [formControlName]="'username'"
+            [(ngModel)]="body.username">
+      </mat-form-field>
 
-</form>
+      <mat-form-field appearance="outline">
+        <mat-label>Password: </mat-label>
+        <input matInput type="password" [formControlName]="'password'"
+            [(ngModel)]="body.password">
+      </mat-form-field>
+
+      <button (click)="login()" mat-raised-button color="primary">
+        <mat-icon>login</mat-icon>
+        Login
+      </button>
+
+    </form>
+  </mat-card>
+</div>

@@ -11,7 +11,7 @@ table {
 }
 
 mat-form-field {
-    margin: 0px 10px;
+    margin: 0px 15px;
 }
 
 button {
@@ -23,8 +23,16 @@ button {
 #chart {
     //max-width: 650px;
     //margin: 35px auto;
-  }
+}
   
 ::ng-deep .apexcharts-legend {
     left:150px;//this makes pie chart show
+}
+
+mat-card {
+    place-self: center;
+}
+
+form {
+    display: grid;
 }
