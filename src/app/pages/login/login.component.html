@@ -1,38 +1,20 @@
-<mat-tab-group>
+<form  [formGroup]="loginForm" #loginNgForm="ngForm">
 
-    <mat-tab label="Login">
-  
-      <br>
-      <br>
-  
-      <form  [formGroup]="loginForm" #loginNgForm="ngForm">
-  
-        <mat-form-field appearance="outline">
-          <mat-label>Username: </mat-label>
-          <input matInput type="text" [formControlName]="'username'"
-              [(ngModel)]="body.username">
-        </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Username: </mat-label>
+    <input matInput type="text" [formControlName]="'username'"
+        [(ngModel)]="body.username">
+  </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Password: </mat-label>
-          <input matInput type="text" [formControlName]="'password'"
-              [(ngModel)]="body.password">
-        </mat-form-field>
-  
-        <button (click)="login()" mat-raised-button color="primary">
-          <mat-icon>search</mat-icon>
-          Login
-        </button>
-  
-      </form>
-  
-    </mat-tab>
-  
-    <mat-tab label="Forgot password / Register">
+  <mat-form-field appearance="outline">
+    <mat-label>Password: </mat-label>
+    <input matInput type="text" [formControlName]="'password'"
+        [(ngModel)]="body.password">
+  </mat-form-field>
 
-      <br>
-      <br>
+  <button (click)="login()" mat-raised-button color="primary">
+    <mat-icon>search</mat-icon>
+    Login
+  </button>
 
-    </mat-tab>
-  
-  </mat-tab-group>
+</form>

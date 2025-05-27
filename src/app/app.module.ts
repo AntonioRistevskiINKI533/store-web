@@ -26,12 +26,14 @@ import { API_BASE_URL, ApiClient } from './api/client';
 import { UsersComponent } from './pages/users/users.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthInterceptor } from './api/interceptor';
+import { DashboardsComponent } from './pages/dashboards/dashboards.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardsComponent
   ],
   imports: [
     BrowserModule,

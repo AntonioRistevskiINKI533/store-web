@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginRequest } from 'src/app/api/client';
 import { UserService } from 'src/app/services/user-service';
 
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private _userService:UserService, 
     private _formBuilder:FormBuilder,
+    private _router:Router,
     ) 
     { }
 
@@ -32,6 +34,7 @@ export class LoginComponent implements OnInit {
   login(){
     this._userService.login(this.body).subscribe(data => {
       sessionStorage.setItem("token", data.token!);
+      this._router.navigate(['/dashboards/profile']);
     });
   }
 }

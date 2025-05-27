@@ -47,8 +47,6 @@ export class UsersComponent implements OnInit {
   }
 
   getAllUsersPaged(){
-    console.log('this.roleId');
-    console.log(this.roleId);
     this._userService.getAllPaged(this.paginator.pageIndex, this.paginator.pageSize, this.fullName, this.roleId).subscribe(data => {
       this.dataSource = new MatTableDataSource<UserData>(data.items!);
       this.totalItems = data.totalItems!;
