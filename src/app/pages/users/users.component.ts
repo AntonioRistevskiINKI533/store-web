@@ -16,7 +16,7 @@ export class UsersComponent implements OnInit {
   @ViewChild('searchNgForm') searchNgForm: NgForm;
   searchForm: FormGroup;
 
-  displayedColumns: string[] = ['username', 'email', 'name', 'surname', 'roleName'];
+  displayedColumns: string[] = ['username', 'email', 'name', 'surname', 'roleName', 'button'];
   dataSource = new MatTableDataSource<UserData>();
   totalItems: number
 
@@ -46,17 +46,25 @@ export class UsersComponent implements OnInit {
     this.getAllRoles();
   }
 
-  getAllUsersPaged(){
+  getAllUsersPaged() {
     this._userService.getAllPaged(this.paginator.pageIndex, this.paginator.pageSize, this.fullName, this.roleId).subscribe(data => {
       this.dataSource = new MatTableDataSource<UserData>(data.items!);
       this.totalItems = data.totalItems!;
     });
   }
 
-    getAllRoles(){
+  getAllRoles() {
     this._roleService.getAll().subscribe(data => {
       this.roles = data;
     });
+  }
+
+  openAddPopup() {
+
+  }
+
+  openEditPopup() {
+
   }
 
 }
