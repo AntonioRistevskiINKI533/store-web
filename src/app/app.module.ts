@@ -27,13 +27,15 @@ import { UsersComponent } from './pages/users/users.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthInterceptor } from './api/interceptor';
 import { DashboardsComponent } from './pages/dashboards/dashboards.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
     LoginComponent,
-    DashboardsComponent
+    DashboardsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

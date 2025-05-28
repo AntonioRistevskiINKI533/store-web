@@ -1023,7 +1023,7 @@ export class ApiClient {
     /**
      * @return Success
      */
-    getUserProfile(): Observable<UserDataActionResult> {
+    getUserProfile(): Observable<UserData> {
         let url_ = this.baseUrl + "/User/GetUserProfile";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1042,14 +1042,14 @@ export class ApiClient {
                 try {
                     return this.processGetUserProfile(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<UserDataActionResult>;
+                    return _observableThrow(e) as any as Observable<UserData>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<UserDataActionResult>;
+                return _observableThrow(response_) as any as Observable<UserData>;
         }));
     }
 
-    protected processGetUserProfile(response: HttpResponseBase): Observable<UserDataActionResult> {
+    protected processGetUserProfile(response: HttpResponseBase): Observable<UserData> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1060,7 +1060,7 @@ export class ApiClient {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = UserDataActionResult.fromJS(resultData200);
+            result200 = UserData.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -1068,7 +1068,7 @@ export class ApiClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<UserDataActionResult>(null as any);
+        return _observableOf<UserData>(null as any);
     }
 
     /**
