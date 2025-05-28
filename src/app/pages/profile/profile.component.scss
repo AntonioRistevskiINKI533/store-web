@@ -28,3 +28,11 @@ button {
 ::ng-deep .apexcharts-legend {
     left:150px;//this makes pie chart show
 }
+
+mat-card{
+    justify-items: center;
+}
+
+.button-container{
+    justify-self: right;
+}

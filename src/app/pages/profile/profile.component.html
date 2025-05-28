@@ -1,43 +1,50 @@
 <mat-card>
   <form  [formGroup]="searchForm" #searchNgForm="ngForm">
 
-    <mat-form-field appearance="outline">
-      <mat-label>Username: </mat-label>
-      <input matInput type="text" [formControlName]="'username'"
-          [(ngModel)]="userData!.username">
-    </mat-form-field>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Username: </mat-label>
+        <input matInput type="text" [formControlName]="'username'"
+            [(ngModel)]="userData!.username">
+      </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Email: </mat-label>
-      <input matInput type="text" [formControlName]="'email'"
-          [(ngModel)]="userData!.email">
-    </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Email: </mat-label>
+        <input matInput type="text" [formControlName]="'email'"
+            [(ngModel)]="userData!.email">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Name: </mat-label>
+        <input matInput type="text" [formControlName]="'name'"
+            [(ngModel)]="userData!.name">
+      </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Name: </mat-label>
-      <input matInput type="text" [formControlName]="'name'"
-          [(ngModel)]="userData!.name">
-    </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Surname: </mat-label>
+        <input matInput type="text" [formControlName]="'surname'"
+            [(ngModel)]="userData!.surname">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Role</mat-label>
+        <mat-select [(ngModel)]="userData!.roleId" [formControlName]="'role'" [disabled]="true">
+          <mat-option *ngFor="let role of roles" [value]="role.id">
+            {{ role.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Surname: </mat-label>
-      <input matInput type="text" [formControlName]="'surname'"
-          [(ngModel)]="userData!.surname">
-    </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Role</mat-label>
-      <mat-select [(ngModel)]="userData!.roleId" [formControlName]="'role'" [disabled]="true">
-        <mat-option *ngFor="let role of roles" [value]="role.id">
-          {{ role.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <button (click)="updateUserProfile()" mat-raised-button color="primary">
-      <mat-icon>save</mat-icon>
-      Save
-    </button>
+    </div>
+    <div class="button-container">
+      <button (click)="updateUserProfile()" mat-raised-button color="primary">
+        <mat-icon>save</mat-icon>
+        Save
+      </button>
+    </div>
 
   </form>
 </mat-card>  
