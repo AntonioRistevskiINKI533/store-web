@@ -1,6 +1,6 @@
 import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
-import { ActionResult, ApiClient, LoginRequest, LoginResponse, UpdateUserProfileRequest, UserData, UserDataPagedModel } from "../api/client";
+import { ActionResult, AddUserRequest, ApiClient, LoginRequest, LoginResponse, UpdateUserProfileRequest, UpdateUserRequest, UserData, UserDataActionResult, UserDataPagedModel } from "../api/client";
 
 @Injectable({
     providedIn: 'root'
@@ -20,6 +20,18 @@ export class UserService {
 
     updateUserProfile(body: UpdateUserProfileRequest | undefined): Observable<ActionResult> {
         return this.apiClient.updateUserProfile(body);
+    }
+    
+    addUser(body: AddUserRequest | undefined): Observable<ActionResult> {
+        return this.apiClient.addUser(body);
+    }
+
+    updateUser(body: UpdateUserRequest | undefined): Observable<ActionResult> {
+        return this.apiClient.updateUser(body);
+    }
+
+    getUser(userId: number | undefined): Observable<UserDataActionResult> {
+        return this.apiClient.getUser(userId);
     }
 
     getAllPaged(pageIndex: number | undefined, pageSize: number | undefined, fullName: string | undefined, roleId: number | undefined): Observable<UserDataPagedModel> {

@@ -28,6 +28,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { AuthInterceptor } from './api/interceptor';
 import { DashboardsComponent } from './pages/dashboards/dashboards.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { AddUserComponent } from './pages/users/add-user/add-user.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     UsersComponent,
     LoginComponent,
     DashboardsComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     MatInputModule,
     BrowserModule,
     NgApexchartsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDialogModule
     //CanvasJSAngularChartsModule,
     //Client,
   ],

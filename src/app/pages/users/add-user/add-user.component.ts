@@ -1,25 +1,22 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatPaginator } from '@angular/material/paginator';
-import { RoleData, UpdateUserProfileRequest, UserData } from 'src/app/api/client';
+import { AddUserRequest, RoleData } from 'src/app/api/client';
 import { RoleService } from 'src/app/services/role-service';
 import { UserService } from 'src/app/services/user-service';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  selector: 'app-add-user',
+  templateUrl: './add-user.component.html',
+  styleUrls: ['./add-user.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class AddUserComponent implements OnInit {
 
   @ViewChild('searchNgForm') searchNgForm: NgForm;
   searchForm: FormGroup;
 
-  fullName: string | undefined;
-  roleId: number | undefined;
+  confirmPassword: string;
   roles: RoleData[];
-  body: UpdateUserProfileRequest | undefined = new UpdateUserProfileRequest();
-  userData: UserData | undefined = new UserData();
+  body: AddUserRequest | undefined = new AddUserRequest();
   
   constructor(
     private _userService:UserService, 
@@ -35,26 +32,21 @@ export class ProfileComponent implements OnInit {
       name:[null, [Validators.required]],
       surname: [null, [Validators.required]],
       role: [null, [Validators.required]],
+      password: [null, [Validators.required]],
+      confirmPassword: [null, [Validators.required]],
     })
   }
 
   ngAfterViewInit() {
-    this.getProfile();
     this.getAllRoles();
   }
 
-  getProfile(){
-    this._userService.getProfile().subscribe(data => {
-      this.userData = data;
-    });
-  }
+  addUser(){
+    if (this.body!.password !== this.confirmPassword) {
+      
+    }
 
-  updateUserProfile(){
-    this.body!.username = this.userData!.username!;
-    this.body!.email = this.userData!.email!;
-    this.body!.name = this.userData!.name!;
-    this.body!.surname = this.userData!.surname!;
-    this._userService.updateUserProfile(this.body).subscribe(data => {
+    this._userService.addUser(this.body).subscribe(data => {
     });
   }
 

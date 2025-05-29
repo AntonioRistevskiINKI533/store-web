@@ -1,0 +1,38 @@
+table {
+    width: 100%;
+}
+
+.mat-cell {
+    text-align: center
+}
+
+.mat-header-cell {
+    text-align: center;
+}
+
+mat-form-field {
+    margin: 0px 10px;
+}
+
+button {
+    margin: 0px 5px;
+}
+
+//chart
+
+#chart {
+    //max-width: 650px;
+    //margin: 35px auto;
+  }
+  
+::ng-deep .apexcharts-legend {
+    left:150px;//this makes pie chart show
+}
+
+mat-card{
+    justify-items: center;
+}
+
+.button-container{
+    justify-self: right;
+}

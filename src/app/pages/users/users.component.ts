@@ -2,9 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm, FormGroup, FormBuilder } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
 import { RoleData, UserData } from 'src/app/api/client';
 import { RoleService } from 'src/app/services/role-service';
 import { UserService } from 'src/app/services/user-service';
+import { AddUserComponent } from './add-user/add-user.component';
 
 @Component({
   selector: 'app-users',
@@ -30,6 +32,7 @@ export class UsersComponent implements OnInit {
     private _userService:UserService, 
     private _roleService:RoleService, 
     private _formBuilder:FormBuilder,
+    private _dialog: MatDialog
     ) 
     { }
 
@@ -60,7 +63,16 @@ export class UsersComponent implements OnInit {
   }
 
   openAddPopup() {
+    const dialogRef = this._dialog.open(AddUserComponent, {
+      width: '400px',
+      data: {}
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'refresh') {
+      this.getAllUsersPaged();
+      }
+    });
   }
 
   openEditPopup() {

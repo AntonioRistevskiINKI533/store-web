@@ -1,0 +1,62 @@
+
+<form  [formGroup]="searchForm" #searchNgForm="ngForm">
+
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Username: </mat-label>
+      <input matInput type="text" [formControlName]="'username'"
+          [(ngModel)]="body!.username">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email: </mat-label>
+      <input matInput type="text" [formControlName]="'email'"
+          [(ngModel)]="body!.email">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Name: </mat-label>
+      <input matInput type="text" [formControlName]="'name'"
+          [(ngModel)]="body!.name">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Surname: </mat-label>
+      <input matInput type="text" [formControlName]="'surname'"
+          [(ngModel)]="body!.surname">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Role</mat-label>
+      <mat-select [(ngModel)]="body!.roleId" [formControlName]="'role'">
+        <mat-option *ngFor="let role of roles" [value]="role.id">
+          {{ role.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password: </mat-label>
+      <input matInput type="password" [formControlName]="'password'"
+          [(ngModel)]="body!.password">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Confirm password: </mat-label>
+      <input matInput type="password" [formControlName]="'confirmPassword'"
+          [(ngModel)]="confirmPassword">
+    </mat-form-field>
+  </div>
+  
+  <div class="button-container">
+    <button (click)="addUser()" mat-raised-button color="primary">
+      <mat-icon>add</mat-icon>
+      Add
+    </button>
+  </div>
+
+</form> 
