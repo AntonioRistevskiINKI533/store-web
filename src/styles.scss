@@ -2,3 +2,9 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-image: linear-gradient(blue, white); display:block; justify-content: center; align-content: center; }
+.snackbar-success {
+  background-color: #2a1eab;
+}
+.snackbar-error {
+  background-color: #ab1e1e;
+}

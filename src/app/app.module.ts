@@ -12,6 +12,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatTabsModule} from '@angular/material/tabs';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
@@ -60,7 +61,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     BrowserModule,
     NgApexchartsModule,
     MatTabsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule,
     //CanvasJSAngularChartsModule,
     //Client,
   ],
