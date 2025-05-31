@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { AddUserRequest, RoleData } from 'src/app/api/client';
 import { SnackBarHelper } from 'src/app/helpers/snack-bar.helper';
 import { RoleService } from 'src/app/services/role-service';
@@ -23,7 +24,8 @@ export class AddUserComponent implements OnInit {
     private _userService:UserService, 
     private _roleService:RoleService, 
     private _formBuilder:FormBuilder,
-    private _snackBarHelper: SnackBarHelper
+    private _snackBarHelper: SnackBarHelper,
+    public dialogRef: MatDialogRef<AddUserComponent>
     ) 
     { }
 
@@ -52,6 +54,7 @@ export class AddUserComponent implements OnInit {
     this._userService.addUser(this.body).subscribe({
       next: data => {
       this._snackBarHelper.success();
+      this.dialogRef.close(true);
       },
       error: err => {
       this._snackBarHelper.error(err);

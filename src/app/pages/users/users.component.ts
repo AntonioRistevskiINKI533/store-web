@@ -69,7 +69,7 @@ export class UsersComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'refresh') {
+      if (result === true) {
       this.getAllUsersPaged();
       }
     });
