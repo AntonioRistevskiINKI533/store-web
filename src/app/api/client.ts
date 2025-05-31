@@ -142,7 +142,7 @@ export class ApiClient {
      * @param companyId (optional) 
      * @return Success
      */
-    getCompany(companyId: number | undefined): Observable<CompanyDataActionResult> {
+    getCompany(companyId: number | undefined): Observable<CompanyData> {
         let url_ = this.baseUrl + "/Company/GetCompany?";
         if (companyId === null)
             throw new Error("The parameter 'companyId' cannot be null.");
@@ -165,14 +165,14 @@ export class ApiClient {
                 try {
                     return this.processGetCompany(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<CompanyDataActionResult>;
+                    return _observableThrow(e) as any as Observable<CompanyData>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<CompanyDataActionResult>;
+                return _observableThrow(response_) as any as Observable<CompanyData>;
         }));
     }
 
-    protected processGetCompany(response: HttpResponseBase): Observable<CompanyDataActionResult> {
+    protected processGetCompany(response: HttpResponseBase): Observable<CompanyData> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -183,7 +183,7 @@ export class ApiClient {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = CompanyDataActionResult.fromJS(resultData200);
+            result200 = CompanyData.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -191,7 +191,7 @@ export class ApiClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<CompanyDataActionResult>(null as any);
+        return _observableOf<CompanyData>(null as any);
     }
 
     /**
@@ -427,7 +427,7 @@ export class ApiClient {
      * @param productId (optional) 
      * @return Success
      */
-    getProduct(productId: number | undefined): Observable<ProductDataActionResult> {
+    getProduct(productId: number | undefined): Observable<ProductData> {
         let url_ = this.baseUrl + "/Product/GetProduct?";
         if (productId === null)
             throw new Error("The parameter 'productId' cannot be null.");
@@ -450,14 +450,14 @@ export class ApiClient {
                 try {
                     return this.processGetProduct(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<ProductDataActionResult>;
+                    return _observableThrow(e) as any as Observable<ProductData>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<ProductDataActionResult>;
+                return _observableThrow(response_) as any as Observable<ProductData>;
         }));
     }
 
-    protected processGetProduct(response: HttpResponseBase): Observable<ProductDataActionResult> {
+    protected processGetProduct(response: HttpResponseBase): Observable<ProductData> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -468,7 +468,7 @@ export class ApiClient {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = ProductDataActionResult.fromJS(resultData200);
+            result200 = ProductData.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -476,7 +476,7 @@ export class ApiClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<ProductDataActionResult>(null as any);
+        return _observableOf<ProductData>(null as any);
     }
 
     /**
@@ -722,7 +722,7 @@ export class ApiClient {
      * @param productSaleId (optional) 
      * @return Success
      */
-    getProductSale(productSaleId: number | undefined): Observable<ProductSaleDataActionResult> {
+    getProductSale(productSaleId: number | undefined): Observable<ProductSaleData> {
         let url_ = this.baseUrl + "/ProductSale/GetProductSale?";
         if (productSaleId === null)
             throw new Error("The parameter 'productSaleId' cannot be null.");
@@ -745,14 +745,14 @@ export class ApiClient {
                 try {
                     return this.processGetProductSale(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<ProductSaleDataActionResult>;
+                    return _observableThrow(e) as any as Observable<ProductSaleData>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<ProductSaleDataActionResult>;
+                return _observableThrow(response_) as any as Observable<ProductSaleData>;
         }));
     }
 
-    protected processGetProductSale(response: HttpResponseBase): Observable<ProductSaleDataActionResult> {
+    protected processGetProductSale(response: HttpResponseBase): Observable<ProductSaleData> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -763,7 +763,7 @@ export class ApiClient {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = ProductSaleDataActionResult.fromJS(resultData200);
+            result200 = ProductSaleData.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -771,7 +771,7 @@ export class ApiClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<ProductSaleDataActionResult>(null as any);
+        return _observableOf<ProductSaleData>(null as any);
     }
 
     /**
@@ -1243,7 +1243,7 @@ export class ApiClient {
      * @param userId (optional) 
      * @return Success
      */
-    getUser(userId: number | undefined): Observable<UserDataActionResult> {
+    getUser(userId: number | undefined): Observable<UserData> {
         let url_ = this.baseUrl + "/User/GetUser?";
         if (userId === null)
             throw new Error("The parameter 'userId' cannot be null.");
@@ -1266,14 +1266,14 @@ export class ApiClient {
                 try {
                     return this.processGetUser(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<UserDataActionResult>;
+                    return _observableThrow(e) as any as Observable<UserData>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<UserDataActionResult>;
+                return _observableThrow(response_) as any as Observable<UserData>;
         }));
     }
 
-    protected processGetUser(response: HttpResponseBase): Observable<UserDataActionResult> {
+    protected processGetUser(response: HttpResponseBase): Observable<UserData> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1284,7 +1284,7 @@ export class ApiClient {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = UserDataActionResult.fromJS(resultData200);
+            result200 = UserData.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -1292,7 +1292,7 @@ export class ApiClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<UserDataActionResult>(null as any);
+        return _observableOf<UserData>(null as any);
     }
 
     /**
@@ -1693,46 +1693,6 @@ export interface ICompanyData {
     phone?: string | undefined;
 }
 
-export class CompanyDataActionResult implements ICompanyDataActionResult {
-    result?: ActionResult;
-    value?: CompanyData;
-
-    constructor(data?: ICompanyDataActionResult) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.result = _data["result"] ? ActionResult.fromJS(_data["result"]) : <any>undefined;
-            this.value = _data["value"] ? CompanyData.fromJS(_data["value"]) : <any>undefined;
-        }
-    }
-
-    static fromJS(data: any): CompanyDataActionResult {
-        data = typeof data === 'object' ? data : {};
-        let result = new CompanyDataActionResult();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
-        data["value"] = this.value ? this.value.toJSON() : <any>undefined;
-        return data;
-    }
-}
-
-export interface ICompanyDataActionResult {
-    result?: ActionResult;
-    value?: CompanyData;
-}
-
 export class CompanyDataPagedModel implements ICompanyDataPagedModel {
     totalItems?: number;
     items?: CompanyData[] | undefined;
@@ -1913,46 +1873,6 @@ export interface IProductData {
     companyName?: string | undefined;
 }
 
-export class ProductDataActionResult implements IProductDataActionResult {
-    result?: ActionResult;
-    value?: ProductData;
-
-    constructor(data?: IProductDataActionResult) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.result = _data["result"] ? ActionResult.fromJS(_data["result"]) : <any>undefined;
-            this.value = _data["value"] ? ProductData.fromJS(_data["value"]) : <any>undefined;
-        }
-    }
-
-    static fromJS(data: any): ProductDataActionResult {
-        data = typeof data === 'object' ? data : {};
-        let result = new ProductDataActionResult();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
-        data["value"] = this.value ? this.value.toJSON() : <any>undefined;
-        return data;
-    }
-}
-
-export interface IProductDataActionResult {
-    result?: ActionResult;
-    value?: ProductData;
-}
-
 export class ProductDataPagedModel implements IProductDataPagedModel {
     totalItems?: number;
     items?: ProductData[] | undefined;
@@ -2055,46 +1975,6 @@ export interface IProductSaleData {
     pricePerUnit?: number;
     date?: Date;
     productName?: string | undefined;
-}
-
-export class ProductSaleDataActionResult implements IProductSaleDataActionResult {
-    result?: ActionResult;
-    value?: ProductSaleData;
-
-    constructor(data?: IProductSaleDataActionResult) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.result = _data["result"] ? ActionResult.fromJS(_data["result"]) : <any>undefined;
-            this.value = _data["value"] ? ProductSaleData.fromJS(_data["value"]) : <any>undefined;
-        }
-    }
-
-    static fromJS(data: any): ProductSaleDataActionResult {
-        data = typeof data === 'object' ? data : {};
-        let result = new ProductSaleDataActionResult();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
-        data["value"] = this.value ? this.value.toJSON() : <any>undefined;
-        return data;
-    }
-}
-
-export interface IProductSaleDataActionResult {
-    result?: ActionResult;
-    value?: ProductSaleData;
 }
 
 export class ProductSaleDataPagedModel implements IProductSaleDataPagedModel {
@@ -2491,46 +2371,6 @@ export interface IUserData {
     surname?: string | undefined;
     roleId?: number;
     roleName?: string | undefined;
-}
-
-export class UserDataActionResult implements IUserDataActionResult {
-    result?: ActionResult;
-    value?: UserData;
-
-    constructor(data?: IUserDataActionResult) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.result = _data["result"] ? ActionResult.fromJS(_data["result"]) : <any>undefined;
-            this.value = _data["value"] ? UserData.fromJS(_data["value"]) : <any>undefined;
-        }
-    }
-
-    static fromJS(data: any): UserDataActionResult {
-        data = typeof data === 'object' ? data : {};
-        let result = new UserDataActionResult();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
-        data["value"] = this.value ? this.value.toJSON() : <any>undefined;
-        return data;
-    }
-}
-
-export interface IUserDataActionResult {
-    result?: ActionResult;
-    value?: UserData;
 }
 
 export class UserDataPagedModel implements IUserDataPagedModel {

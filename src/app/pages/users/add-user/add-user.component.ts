@@ -54,10 +54,7 @@ export class AddUserComponent implements OnInit {
       this._snackBarHelper.success();
       },
       error: err => {
-        console.log('test');
-        console.log(err);
-        console.error(err);
-      this._snackBarHelper.error(err.message);
+      this._snackBarHelper.error(err);
       }
     });
   }

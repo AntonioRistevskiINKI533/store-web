@@ -1,6 +1,6 @@
 import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
-import { ActionResult, AddUserRequest, ApiClient, LoginRequest, LoginResponse, UpdateUserProfileRequest, UpdateUserRequest, UserData, UserDataActionResult, UserDataPagedModel } from "../api/client";
+import { ActionResult, AddUserRequest, ApiClient, LoginRequest, LoginResponse, UpdateUserProfileRequest, UpdateUserRequest, UserData, UserDataPagedModel } from "../api/client";
 
 @Injectable({
     providedIn: 'root'
@@ -30,7 +30,7 @@ export class UserService {
         return this.apiClient.updateUser(body);
     }
 
-    getUser(userId: number | undefined): Observable<UserDataActionResult> {
+    getUser(userId: number | undefined): Observable<UserData> {
         return this.apiClient.getUser(userId);
     }
 
