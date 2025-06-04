@@ -2267,6 +2267,7 @@ export class UpdateUserRequest implements IUpdateUserRequest {
     email!: string;
     name!: string;
     surname!: string;
+    roleId!: number;
 
     constructor(data?: IUpdateUserRequest) {
         if (data) {
@@ -2284,6 +2285,7 @@ export class UpdateUserRequest implements IUpdateUserRequest {
             this.email = _data["email"];
             this.name = _data["name"];
             this.surname = _data["surname"];
+            this.roleId = _data["roleId"];
         }
     }
 
@@ -2301,6 +2303,7 @@ export class UpdateUserRequest implements IUpdateUserRequest {
         data["email"] = this.email;
         data["name"] = this.name;
         data["surname"] = this.surname;
+        data["roleId"] = this.roleId;
         return data;
     }
 }
@@ -2311,6 +2314,7 @@ export interface IUpdateUserRequest {
     email: string;
     name: string;
     surname: string;
+    roleId: number;
 }
 
 export class UserData implements IUserData {

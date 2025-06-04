@@ -38,22 +38,10 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Password: </mat-label>
-      <input matInput type="password" [formControlName]="'password'"
-          [(ngModel)]="body!.password">
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Confirm password: </mat-label>
-      <input matInput type="password" [formControlName]="'confirmPassword'"
-          [(ngModel)]="confirmPassword">
-    </mat-form-field>
   </div>
   
   <div class="button-container">
-    <button (click)="addUser()" mat-raised-button color="primary">
+    <button (click)="editUser()" mat-raised-button color="primary">
       <mat-icon>save</mat-icon>
       Save
     </button>
