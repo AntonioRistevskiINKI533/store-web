@@ -8,6 +8,7 @@ import { RoleService } from 'src/app/services/role-service';
 import { UserService } from 'src/app/services/user-service';
 import { AddUserComponent } from './add-user/add-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { DeleteComponent } from '../dashboards/delete/delete.component';
 
 @Component({
   selector: 'app-users',
@@ -81,6 +82,23 @@ export class UsersComponent implements OnInit {
       width: '400px',
       data: {
         id
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+      this.getAllUsersPaged();
+      }
+    });
+  }
+
+  openDeletePopup(id: number, username: string) {
+    const dialogRef = this._dialog.open(DeleteComponent, {
+      width: '400px',
+      data: {
+        id,
+        item: 'user',
+        text: username
       }
     });
 

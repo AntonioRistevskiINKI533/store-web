@@ -38,4 +38,8 @@ export class UserService {
         return this.apiClient.getAllUsersPaged(pageIndex, pageSize, fullName, roleId);
     }
 
+    removeUser(userId: number | undefined): Observable<ActionResult> {
+        return this.apiClient.removeUser(userId);
+    }
+
 }

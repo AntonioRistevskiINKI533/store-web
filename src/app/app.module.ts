@@ -32,6 +32,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { AddUserComponent } from './pages/users/add-user/add-user.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditUserComponent } from './pages/users/edit-user/edit-user.component';
+import { DeleteComponent } from './pages/dashboards/delete/delete.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { EditUserComponent } from './pages/users/edit-user/edit-user.component';
     DashboardsComponent,
     ProfileComponent,
     AddUserComponent,
-    EditUserComponent
+    EditUserComponent,
+    DeleteComponent
   ],
   imports: [
     BrowserModule,
