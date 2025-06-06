@@ -1,6 +1,16 @@
-  <p>Are you sure that you want <b>delete</b> the <b>{{ item }} {{ text }}</b></p>
+  <div>
+    <h2>Delete {{ item }}</h2>
+  </div>
+  
+  <p>Are you sure you want to delete <b>{{ text }}</b>?</p>
+
+  <br>
   
   <div class="button-container">
+    <button (click)="this.dialogRef.close(false)" mat-raised-button>
+      <mat-icon>cancel</mat-icon>
+      Cancel
+    </button>
     <button (click)="delete()" mat-raised-button color="warn">
       <mat-icon>delete</mat-icon>
       Delete

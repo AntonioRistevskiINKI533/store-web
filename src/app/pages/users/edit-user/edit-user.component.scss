@@ -36,3 +36,11 @@ mat-card{
 .button-container{
     justify-self: right;
 }
+
+.row {
+    display: flex;
+}
+
+::ng-deep .mat-dialog-container {
+    display: inline-table;
+}

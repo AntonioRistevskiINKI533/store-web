@@ -2,6 +2,10 @@
 <form  [formGroup]="mainForm" #mainNgForm="ngForm">
 
   <div>
+    <h2>Edit user</h2>
+  </div>
+
+  <div class="row">
     <mat-form-field appearance="outline">
       <mat-label>Username: </mat-label>
       <input matInput type="text" [formControlName]="'username'"
@@ -15,7 +19,7 @@
     </mat-form-field>
   </div>
 
-  <div>
+  <div class="row">
     <mat-form-field appearance="outline">
       <mat-label>Name: </mat-label>
       <input matInput type="text" [formControlName]="'name'"
@@ -29,7 +33,7 @@
     </mat-form-field>
   </div>
 
-  <div>
+  <div class="row">
     <mat-form-field appearance="outline">
       <mat-label>Role</mat-label>
       <mat-select [(ngModel)]="body!.roleId" [formControlName]="'role'">
@@ -41,6 +45,10 @@
   </div>
   
   <div class="button-container">
+    <button (click)="this.dialogRef.close(false)" mat-raised-button>
+      <mat-icon>cancel</mat-icon>
+      Cancel
+    </button>
     <button (click)="editUser()" mat-raised-button color="primary">
       <mat-icon>save</mat-icon>
       Save
