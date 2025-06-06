@@ -33,6 +33,9 @@ import { AddUserComponent } from './pages/users/add-user/add-user.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditUserComponent } from './pages/users/edit-user/edit-user.component';
 import { DeleteComponent } from './pages/dashboards/delete/delete.component';
+import { CompaniesComponent } from './pages/companies/companies.component';
+import { AddCompanyComponent } from './pages/companies/add-company/add-company.component';
+import { EditCompanyComponent } from './pages/companies/edit-company/edit-company.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { DeleteComponent } from './pages/dashboards/delete/delete.component';
     ProfileComponent,
     AddUserComponent,
     EditUserComponent,
-    DeleteComponent
+    DeleteComponent,
+    CompaniesComponent,
+    AddCompanyComponent,
+    EditCompanyComponent
   ],
   imports: [
     BrowserModule,

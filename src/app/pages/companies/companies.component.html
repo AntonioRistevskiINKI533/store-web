@@ -1,0 +1,56 @@
+
+<button class="table-button" (click)="openAddPopup()" mat-raised-button color="primary">
+  <mat-icon>add</mat-icon>
+  Add new company
+</button>
+
+<br>
+<br>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef> Address </th>
+      <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef> Phone </th>
+      <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="button">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element" class="button-td"> 
+        <button class="table-button" (click)="openDeletePopup(element.id, element.name)" mat-raised-button color="warn">
+          <mat-icon>delete</mat-icon>
+          Delete
+        </button>
+        <button class="table-button" (click)="openEditPopup(element.id)" mat-raised-button color="primary">
+          <mat-icon>edit</mat-icon>
+          Edit
+        </button>
+          </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator
+    [length]="totalItems"
+    [pageSizeOptions]="[5, 10, 20, 50, 100]"
+    [pageIndex]="0"
+    [pageSize]="10"
+    (page)="getAllCompaniesPaged()"
+    showFirstLastButtons
+    aria-label="Select page of periodic elements">
+  </mat-paginator>
+  
+</div>
