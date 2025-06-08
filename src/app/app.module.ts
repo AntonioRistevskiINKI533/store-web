@@ -37,6 +37,7 @@ import { CompaniesComponent } from './pages/companies/companies.component';
 import { AddCompanyComponent } from './pages/companies/add-company/add-company.component';
 import { EditCompanyComponent } from './pages/companies/edit-company/edit-company.component';
 import { ProductsComponent } from './pages/products/products.component';
+import { AddProductComponent } from './pages/products/add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ProductsComponent } from './pages/products/products.component';
     CompaniesComponent,
     AddCompanyComponent,
     EditCompanyComponent,
-    ProductsComponent
+    ProductsComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,

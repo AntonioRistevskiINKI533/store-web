@@ -1,0 +1,43 @@
+<form  [formGroup]="mainForm" #mainNgForm="ngForm">
+  
+  <div>
+    <h2>Add product</h2>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Name: </mat-label>
+      <input matInput type="text" [formControlName]="'name'"
+          [(ngModel)]="body!.name">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Company</mat-label>
+      <mat-select [(ngModel)]="body!.companyId" [formControlName]="'company'">
+        <mat-option *ngFor="let company of companies" [value]="company.id">
+          {{ company.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Price: </mat-label>
+      <input matInput type="number" [formControlName]="'price'"
+          [(ngModel)]="body!.price">
+    </mat-form-field>
+  </div>
+  
+  <div class="button-container">
+    <button (click)="this.dialogRef.close(false)" mat-raised-button>
+      <mat-icon>cancel</mat-icon>
+      Cancel
+    </button>
+    <button (click)="addProduct()" mat-raised-button color="primary">
+      <mat-icon>save</mat-icon>
+      Save
+    </button>
+  </div>
+
+</form> 
