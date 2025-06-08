@@ -38,6 +38,7 @@ import { AddCompanyComponent } from './pages/companies/add-company/add-company.c
 import { EditCompanyComponent } from './pages/companies/edit-company/edit-company.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { AddProductComponent } from './pages/products/add-product/add-product.component';
+import { EditProductComponent } from './pages/products/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { AddProductComponent } from './pages/products/add-product/add-product.co
     AddCompanyComponent,
     EditCompanyComponent,
     ProductsComponent,
-    AddProductComponent
+    AddProductComponent,
+    EditProductComponent
   ],
   imports: [
     BrowserModule,

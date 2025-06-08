@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { DeleteComponent } from '../dashboards/delete/delete.component';
 import { CompanyService } from 'src/app/services/company-service';
 import { AddProductComponent } from './add-product/add-product.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
 
 @Component({
   selector: 'app-products',
@@ -78,18 +79,18 @@ export class ProductsComponent implements OnInit {
   }
 
   openEditPopup(id: number) {
-    // const dialogRef = this._dialog.open(EditProductComponent, {
-    //   width: '400px',
-    //   data: {
-    //     id
-    //   }
-    // });
+    const dialogRef = this._dialog.open(EditProductComponent, {
+      width: '400px',
+      data: {
+        id
+      }
+    });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result === true) {
-    //   this.getAllProductsPaged();
-    //   }
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+      this.getAllProductsPaged();
+      }
+    });
   }
 
   openDeletePopup(id: number, name: string) {
