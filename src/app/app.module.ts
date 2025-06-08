@@ -36,6 +36,7 @@ import { DeleteComponent } from './pages/dashboards/delete/delete.component';
 import { CompaniesComponent } from './pages/companies/companies.component';
 import { AddCompanyComponent } from './pages/companies/add-company/add-company.component';
 import { EditCompanyComponent } from './pages/companies/edit-company/edit-company.component';
+import { ProductsComponent } from './pages/products/products.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { EditCompanyComponent } from './pages/companies/edit-company/edit-compan
     DeleteComponent,
     CompaniesComponent,
     AddCompanyComponent,
-    EditCompanyComponent
+    EditCompanyComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,

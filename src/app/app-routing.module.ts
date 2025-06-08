@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { DashboardsComponent } from './pages/dashboards/dashboards.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { CompaniesComponent } from './pages/companies/companies.component';
+import { ProductsComponent } from './pages/products/products.component';
 
 const routes: Routes = [
   { path:'', redirectTo: 'login', pathMatch: 'full'},
@@ -13,7 +14,7 @@ const routes: Routes = [
     { path:'profile', component:ProfileComponent },
     { path:'users', component:UsersComponent },
     { path:'companies', component:CompaniesComponent },
-    { path:'products', component:UsersComponent },
+    { path:'products', component:ProductsComponent },
     { path:'productSales', component:UsersComponent },
   ]},
 ];
