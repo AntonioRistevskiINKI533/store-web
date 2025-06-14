@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatPaginator } from '@angular/material/paginator';
 import { RoleData, UpdateUserProfileRequest, UserData } from 'src/app/api/client';
+import { SnackBarHelper } from 'src/app/helpers/snack-bar.helper';
 import { RoleService } from 'src/app/services/role-service';
 import { UserService } from 'src/app/services/user-service';
 
@@ -12,8 +12,8 @@ import { UserService } from 'src/app/services/user-service';
 })
 export class ProfileComponent implements OnInit {
 
-  @ViewChild('searchNgForm') searchNgForm: NgForm;
-  searchForm: FormGroup;
+  @ViewChild('mainNgForm') mainNgForm: NgForm;
+  mainForm: FormGroup;
 
   fullName: string | undefined;
   roleId: number | undefined;
@@ -22,14 +22,15 @@ export class ProfileComponent implements OnInit {
   userData: UserData | undefined = new UserData();
   
   constructor(
-    private _userService:UserService, 
-    private _roleService:RoleService, 
-    private _formBuilder:FormBuilder,
+    private _userService: UserService, 
+    private _roleService: RoleService, 
+    private _formBuilder: FormBuilder,
+    private _snackBarHelper: SnackBarHelper,
     ) 
     { }
 
   ngOnInit(): void {
-    this.searchForm = this._formBuilder.group({
+    this.mainForm = this._formBuilder.group({
       username: [null, [Validators.required]],
       email: [null, [Validators.required]],
       name:[null, [Validators.required]],
@@ -54,7 +55,13 @@ export class ProfileComponent implements OnInit {
     this.body!.email = this.userData!.email!;
     this.body!.name = this.userData!.name!;
     this.body!.surname = this.userData!.surname!;
-    this._userService.updateUserProfile(this.body).subscribe(data => {
+    this._userService.updateUserProfile(this.body).subscribe({
+      next: data => {
+        this._snackBarHelper.success();
+      },
+      error: err => {
+        this._snackBarHelper.error(err);
+      }
     });
   }
 
