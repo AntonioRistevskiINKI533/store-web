@@ -39,6 +39,7 @@ import { EditCompanyComponent } from './pages/companies/edit-company/edit-compan
 import { ProductsComponent } from './pages/products/products.component';
 import { AddProductComponent } from './pages/products/add-product/add-product.component';
 import { EditProductComponent } from './pages/products/edit-product/edit-product.component';
+import { ProductSalesComponent } from './pages/product-sales/product-sales.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { EditProductComponent } from './pages/products/edit-product/edit-product
     EditCompanyComponent,
     ProductsComponent,
     AddProductComponent,
-    EditProductComponent
+    EditProductComponent,
+    ProductSalesComponent
   ],
   imports: [
     BrowserModule,
