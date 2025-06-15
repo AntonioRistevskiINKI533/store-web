@@ -9,6 +9,20 @@
     </mat-select>
   </mat-form-field> -->
 
+  <mat-form-field appearance="outline">
+    <mat-label>Date from</mat-label>
+    <input matInput [matDatepicker]="pickerFrom" [formControlName]="'dateFrom'" [(ngModel)]="dateFrom">
+    <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+    <mat-datepicker #pickerFrom></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Date to</mat-label>
+    <input matInput [matDatepicker]="pickerTo" [formControlName]="'dateTo'" [(ngModel)]="dateTo">
+    <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+    <mat-datepicker #pickerTo></mat-datepicker>
+  </mat-form-field>
+
   <button (click)="getAllProductSalesPaged()" mat-raised-button color="primary">
     <mat-icon>search</mat-icon>
     Пребарај

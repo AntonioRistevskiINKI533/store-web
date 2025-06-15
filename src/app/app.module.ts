@@ -13,6 +13,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
@@ -83,6 +85,8 @@ import { ProductSalesComponent } from './pages/product-sales/product-sales.compo
     MatSnackBarModule,
     //CanvasJSAngularChartsModule,
     //Client,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     ApiClient,
