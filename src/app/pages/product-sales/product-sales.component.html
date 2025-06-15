@@ -1,13 +1,13 @@
 <form  [formGroup]="searchForm" #searchNgForm="ngForm">
 
-  <!-- <mat-form-field appearance="outline">
-    <mat-label>Company</mat-label>
-    <mat-select [(ngModel)]="companyId" [formControlName]="'company'">
-      <mat-option *ngFor="let company of companies" [value]="company.id">
-        {{ company.name }}
+  <mat-form-field appearance="outline">
+    <mat-label>Product</mat-label>
+    <mat-select [(ngModel)]="productId" [formControlName]="'product'">
+      <mat-option *ngFor="let product of products" [value]="product.id">
+        {{ product.name }}
       </mat-option>
     </mat-select>
-  </mat-form-field> -->
+  </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Date from</mat-label>
