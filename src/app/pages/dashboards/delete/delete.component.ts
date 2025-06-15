@@ -64,7 +64,7 @@ export class DeleteComponent {
           this._snackBarHelper.error(err);
         }
       });
-    } else if (this.item === 'productSale') {
+    } else if (this.item === 'product sale') {
       this._productSaleService.removeProductSale(this.id).subscribe({
         next: data => {
           this._snackBarHelper.success();
