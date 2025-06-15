@@ -7,6 +7,7 @@ import { ProductService } from 'src/app/services/product-service';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { DeleteComponent } from '../dashboards/delete/delete.component';
 import { ProductSaleService } from 'src/app/services/product-sale-service';
+import { AddProductSaleComponent } from './add-product-sale/add-product-sale.component';
 
 @Component({
   selector: 'app-product-sales',
@@ -65,16 +66,16 @@ export class ProductSalesComponent implements OnInit {
   }
 
   openAddPopup() {
-    // const dialogRef = this._dialog.open(AddProductComponent, {
-    //   width: '400px',
-    //   data: {}
-    // });
+    const dialogRef = this._dialog.open(AddProductSaleComponent, {
+      width: '400px',
+      data: {}
+    });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result === true) {
-    //   this.getAllProductsPaged();
-    //   }
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+      this.getAllProductSalesPaged();
+      }
+    });
   }
 
   openEditPopup(id: number) {

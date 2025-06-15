@@ -43,6 +43,7 @@ import { ProductsComponent } from './pages/products/products.component';
 import { AddProductComponent } from './pages/products/add-product/add-product.component';
 import { EditProductComponent } from './pages/products/edit-product/edit-product.component';
 import { ProductSalesComponent } from './pages/product-sales/product-sales.component';
+import { AddProductSaleComponent } from './pages/product-sales/add-product-sale/add-product-sale.component';
 
 export const MY_DATE_FORMATS = {
   parse: {
@@ -72,7 +73,8 @@ export const MY_DATE_FORMATS = {
     ProductsComponent,
     AddProductComponent,
     EditProductComponent,
-    ProductSalesComponent
+    ProductSalesComponent,
+    AddProductSaleComponent
   ],
   imports: [
     BrowserModule,

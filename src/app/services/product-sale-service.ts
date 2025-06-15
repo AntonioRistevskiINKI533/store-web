@@ -22,7 +22,7 @@ export class ProductSaleService {
         return this.apiClient.getProductSale(productId);
     }
 
-    getAllPaged(pageIndex: number | undefined, pageSize: number | undefined, dateFrom: Date | undefined, dateTo: Date | undefined, productId: number | undefined): Observable<ProductSaleDataPagedModel> {
+    getAllPaged(pageIndex: number | undefined, pageSize: number | undefined, dateFrom: Date | undefined = undefined, dateTo: Date | undefined = undefined, productId: number | undefined = undefined): Observable<ProductSaleDataPagedModel> {
         return this.apiClient.getAllProductSalesPaged(pageIndex, pageSize, dateFrom, dateTo, productId);
     }
 
