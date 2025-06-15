@@ -16,6 +16,7 @@ export class DeleteComponent {
   id: number | undefined;
   item: string | undefined;
   text: string | undefined;
+  date: string | undefined;
   
   constructor(
     private _userService: UserService,
@@ -29,6 +30,7 @@ export class DeleteComponent {
       this.id = data.id;
       this.item = data.item;
       this.text = data.text;
+      this.date = data.date;
   }
 
   delete() {

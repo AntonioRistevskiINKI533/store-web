@@ -92,13 +92,14 @@ export class ProductSalesComponent implements OnInit {
     // });
   }
 
-  openDeletePopup(id: number, name: string) {
+  openDeletePopup(id: number, name: string, date: Date) {
     const dialogRef = this._dialog.open(DeleteComponent, {
       width: '400px',
       data: {
-        id,
-        item: 'productSale',
-        text: name
+      id,
+      item: 'product sale',
+      text: name + ', sold on ',
+      date: date
       }
     });
 
