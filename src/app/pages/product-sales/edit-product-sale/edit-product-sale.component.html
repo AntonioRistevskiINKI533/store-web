@@ -1,0 +1,55 @@
+
+<form  [formGroup]="mainForm" #mainNgForm="ngForm">
+
+  <div>
+    <h2>Edit product sale</h2>
+  </div>
+
+  <div class="row">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Product</mat-label>
+      <mat-select [(ngModel)]="body!.productId" [formControlName]="'product'">
+        <mat-option *ngFor="let product of products" [value]="product.id">
+          {{ product.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="picker" [formControlName]="'date'" [(ngModel)]="body!.date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <!-- // add time picker -->
+  </div>
+
+  <div class="row">
+    
+    <mat-form-field appearance="outline">
+      <mat-label>Price per unit: </mat-label>
+      <input matInput type="number" [formControlName]="'pricePerUnit'"
+          [(ngModel)]="body!.pricePerUnit">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Sold amount: </mat-label>
+      <input matInput type="number" [formControlName]="'soldAmount'"
+          [(ngModel)]="body!.soldAmount">
+    </mat-form-field>
+
+  </div>
+  
+  <div class="button-container">
+    <button (click)="this.dialogRef.close(false)" mat-raised-button>
+      <mat-icon>cancel</mat-icon>
+      Cancel
+    </button>
+    <button (click)="editProductSale()" mat-raised-button color="primary">
+      <mat-icon>save</mat-icon>
+      Save
+    </button>
+  </div>
+
+</form> 
