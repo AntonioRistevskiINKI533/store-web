@@ -5,6 +5,7 @@ import { AddProductSaleRequest, ProductData } from 'src/app/api/client';
 import { SnackBarHelper } from 'src/app/helpers/snack-bar.helper';
 import { ProductService } from 'src/app/services/product-service';
 import { ProductSaleService } from 'src/app/services/product-sale-service';
+import { Time } from '@angular/common';
 
 @Component({
   selector: 'app-add-product-sale',
@@ -16,6 +17,7 @@ export class AddProductSaleComponent implements OnInit {
   @ViewChild('mainNgForm') mainNgForm: NgForm;
   mainForm: FormGroup;
 
+  time: Time;
   products: ProductData[];
   body: AddProductSaleRequest | undefined = new AddProductSaleRequest();
   
@@ -32,6 +34,7 @@ export class AddProductSaleComponent implements OnInit {
     this.mainForm = this._formBuilder.group({
       product:[null, [Validators.required]],
       date: [null],
+      time: [null],
       pricePerUnit: [null, [Validators.required]],
       soldAmount: [null, [Validators.required]],
     })
@@ -45,6 +48,13 @@ export class AddProductSaleComponent implements OnInit {
     if (this.mainNgForm.invalid) {
       this._snackBarHelper.error('Please fill in all required fields');
       return;
+    }
+
+    if (this.time && this.body!.date) {
+      this.body!.date = new Date(this.body!.date);
+      const [hours, minutes] = this.time.toString().split(':').map(Number);
+      this.body!.date.setUTCHours(hours);
+      this.body!.date.setUTCMinutes(minutes);
     }
 
     this._productSaleService.addProductSale(this.body).subscribe({
