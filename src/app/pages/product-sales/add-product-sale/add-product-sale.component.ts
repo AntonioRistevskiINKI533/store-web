@@ -17,7 +17,7 @@ export class AddProductSaleComponent implements OnInit {
   @ViewChild('mainNgForm') mainNgForm: NgForm;
   mainForm: FormGroup;
 
-  time: Time;
+  time: string;
   products: ProductData[];
   body: AddProductSaleRequest | undefined = new AddProductSaleRequest();
   

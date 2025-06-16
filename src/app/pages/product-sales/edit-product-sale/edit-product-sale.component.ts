@@ -17,7 +17,7 @@ export class EditProductSaleComponent implements OnInit {
   @ViewChild('mainNgForm') mainNgForm: NgForm;
   mainForm: FormGroup;
 
-  time: Time;
+  time: string;
   products: ProductData[];
   body: UpdateProductSaleRequest | undefined = new UpdateProductSaleRequest();
   
@@ -54,6 +54,9 @@ export class EditProductSaleComponent implements OnInit {
         this.body!.date = data.date!;
         this.body!.pricePerUnit = data.pricePerUnit!;
         this.body!.soldAmount = data.soldAmount!;
+
+        const date = new Date(this.body!.date);
+        this.time = `${date.getHours().toString().length < 2 ? '0' : ''}${date.getHours()}:${date.getMinutes().toString().length < 2 ? '0' : ''}${date.getMinutes()}`
       },
       error: err => {
         this._snackBarHelper.error(err);
