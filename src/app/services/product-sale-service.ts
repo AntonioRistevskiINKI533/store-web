@@ -12,7 +12,7 @@ export class ProductSaleService {
 
     addProductSale(body: AddProductSaleRequest | undefined): Observable<ActionResult> {
         if (body!.date) {
-            const localDate = body!.date;
+            const localDate = new Date(body!.date);
             const utcDate = new Date(localDate!.getTime() - localDate!.getTimezoneOffset() * 60000);
             body!.date = utcDate;
         }
@@ -21,7 +21,7 @@ export class ProductSaleService {
 
     updateProductSale(body: UpdateProductSaleRequest | undefined): Observable<ActionResult> {
         if (body!.date) {
-            const localDate = body!.date;
+            const localDate = new Date(body!.date);
             const utcDate = new Date(localDate!.getTime() - localDate!.getTimezoneOffset() * 60000);
             body!.date = utcDate;
         }

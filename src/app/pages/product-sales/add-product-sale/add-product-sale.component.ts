@@ -5,7 +5,6 @@ import { AddProductSaleRequest, ProductData } from 'src/app/api/client';
 import { SnackBarHelper } from 'src/app/helpers/snack-bar.helper';
 import { ProductService } from 'src/app/services/product-service';
 import { ProductSaleService } from 'src/app/services/product-sale-service';
-import { Time } from '@angular/common';
 
 @Component({
   selector: 'app-add-product-sale',
