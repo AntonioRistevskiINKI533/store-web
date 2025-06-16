@@ -11,10 +11,20 @@ export class ProductSaleService {
     constructor(private apiClient: ApiClient) { }
 
     addProductSale(body: AddProductSaleRequest | undefined): Observable<ActionResult> {
+        if (body!.date) {
+            const localDate = body!.date;
+            const utcDate = new Date(localDate!.getTime() - localDate!.getTimezoneOffset() * 60000);
+            body!.date = utcDate;
+        }
         return this.apiClient.addProductSale(body);
     }
 
     updateProductSale(body: UpdateProductSaleRequest | undefined): Observable<ActionResult> {
+        if (body!.date) {
+            const localDate = body!.date;
+            const utcDate = new Date(localDate!.getTime() - localDate!.getTimezoneOffset() * 60000);
+            body!.date = utcDate;
+        }
         return this.apiClient.updateProductSale(body);
     }
 

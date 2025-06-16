@@ -1,3 +1,4 @@
+import { Time } from '@angular/common';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -16,6 +17,7 @@ export class EditProductSaleComponent implements OnInit {
   @ViewChild('mainNgForm') mainNgForm: NgForm;
   mainForm: FormGroup;
 
+  time: Time;
   products: ProductData[];
   body: UpdateProductSaleRequest | undefined = new UpdateProductSaleRequest();
   
@@ -34,6 +36,7 @@ export class EditProductSaleComponent implements OnInit {
     this.mainForm = this._formBuilder.group({
       product:[null, [Validators.required]],
       date: [null, [Validators.required]],
+      time: [null, [Validators.required]],
       pricePerUnit: [null, [Validators.required]],
       soldAmount: [null, [Validators.required]],
     })
@@ -62,6 +65,13 @@ export class EditProductSaleComponent implements OnInit {
     if (this.mainNgForm.invalid) {
       this._snackBarHelper.error('Please fill in all required fields');
       return;
+    }
+
+    if (this.time && this.body!.date) {
+      this.body!.date = new Date(this.body!.date);
+      const [hours, minutes] = this.time.toString().split(':').map(Number);
+      this.body!.date.setHours(hours);
+      this.body!.date.setMinutes(minutes);
     }
 
     this._productSaleService.updateProductSale(this.body).subscribe({

@@ -53,8 +53,8 @@ export class AddProductSaleComponent implements OnInit {
     if (this.time && this.body!.date) {
       this.body!.date = new Date(this.body!.date);
       const [hours, minutes] = this.time.toString().split(':').map(Number);
-      this.body!.date.setUTCHours(hours);
-      this.body!.date.setUTCMinutes(minutes);
+      this.body!.date.setHours(hours);
+      this.body!.date.setMinutes(minutes);
     }
 
     this._productSaleService.addProductSale(this.body).subscribe({

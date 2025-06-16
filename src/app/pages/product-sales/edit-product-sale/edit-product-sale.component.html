@@ -6,27 +6,20 @@
   </div>
 
   <div class="row">
-
-    <mat-form-field appearance="outline">
-      <mat-label>Product</mat-label>
-      <mat-select [(ngModel)]="body!.productId" [formControlName]="'product'">
-        <mat-option *ngFor="let product of products" [value]="product.id">
-          {{ product.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" class="date-field">
       <mat-label>Date</mat-label>
       <input matInput [matDatepicker]="picker" [formControlName]="'date'" [(ngModel)]="body!.date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <!-- // add time picker -->
+    
+    <mat-form-field appearance="outline">
+      <mat-label>Time</mat-label>
+      <input matInput type="time" [formControlName]="'time'" [(ngModel)]="time">
+    </mat-form-field>
   </div>
 
   <div class="row">
-    
     <mat-form-field appearance="outline">
       <mat-label>Price per unit: </mat-label>
       <input matInput type="number" [formControlName]="'pricePerUnit'"
@@ -38,7 +31,17 @@
       <input matInput type="number" [formControlName]="'soldAmount'"
           [(ngModel)]="body!.soldAmount">
     </mat-form-field>
+  </div>
 
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Product</mat-label>
+      <mat-select [(ngModel)]="body!.productId" [formControlName]="'product'">
+        <mat-option *ngFor="let product of products" [value]="product.id">
+          {{ product.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   
   <div class="button-container">
