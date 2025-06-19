@@ -16,8 +16,18 @@ export class AddProductComponent implements OnInit {
   @ViewChild('mainNgForm') mainNgForm: NgForm;
   mainForm: FormGroup;
 
-  companies: CompanyData[];
+  companies: CompanyData[] = [];
   body: AddProductRequest | undefined = new AddProductRequest();
+
+  companyPagination: {
+    pageIndex: number;
+    pageSize: number;
+    totalItems: number;
+  } = {
+    pageIndex: 0,
+    pageSize: 20,
+    totalItems: 0
+  }
   
   constructor(
     private _productService:ProductService, 
@@ -57,9 +67,33 @@ export class AddProductComponent implements OnInit {
     });
   }
 
+  onCompanySelectOpened() {
+    setTimeout(() => {
+      const panel = document.querySelector('.mat-select-panel');
+      if (panel) {
+        panel.addEventListener('scroll', this.onCompanyScroll.bind(this));
+      }
+    });
+  }
+
+  onCompanyScroll(event: any) {
+    const target = event.target;
+    if (target.scrollTop + target.clientHeight >= target.scrollHeight - 10 && (this.companyPagination.totalItems > this.companies.length)) {
+      this.getAllCompaniesPaged();
+    }
+  }
+
   getAllCompaniesPaged() {
-    this._companyService.getAllPaged(0, 9999999).subscribe(data => {
-      this.companies = data.items!;
+    this._companyService.getAllPaged(this.companyPagination.pageIndex, this.companyPagination.pageSize).subscribe(data => {
+      this.companyPagination.totalItems = data.totalItems!;
+
+      const newCompanies = data.items ?? [];
+      this.companies = this.companies.length > 0 ? [...this.companies, ...newCompanies] : newCompanies;
+
+      if (this.companyPagination.totalItems > this.companies.length) {
+        this.companyPagination.pageIndex++;
+      }
+
     });
   }
 
