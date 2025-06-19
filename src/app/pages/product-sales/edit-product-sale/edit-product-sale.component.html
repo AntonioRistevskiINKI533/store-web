@@ -36,7 +36,11 @@
   <div class="row">
     <mat-form-field appearance="outline">
       <mat-label>Product</mat-label>
-      <mat-select [(ngModel)]="body!.productId" [formControlName]="'product'">
+      <mat-select
+        [(ngModel)]="body!.productId"
+        [formControlName]="'product'"
+        (openedChange)="onProductSelectOpened()">
+
         <mat-option *ngFor="let product of products" [value]="product.id">
           {{ product.name }}
         </mat-option>

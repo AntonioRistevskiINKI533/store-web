@@ -1,4 +1,3 @@
-import { Time } from '@angular/common';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -18,8 +17,18 @@ export class EditProductSaleComponent implements OnInit {
   mainForm: FormGroup;
 
   time: string;
-  products: ProductData[];
+  products: ProductData[] = [];
   body: UpdateProductSaleRequest | undefined = new UpdateProductSaleRequest();
+
+  productPagination: {
+    pageIndex: number;
+    pageSize: number;
+    totalItems: number;
+  } = {
+    pageIndex: 0,
+    pageSize: 20,
+    totalItems: 0
+  }
   
   constructor(
     private _productService:ProductService,
@@ -88,9 +97,33 @@ export class EditProductSaleComponent implements OnInit {
     });
   }
 
+  onProductSelectOpened() {
+    setTimeout(() => {
+      const panel = document.querySelector('.mat-select-panel');
+      if (panel) {
+        panel.addEventListener('scroll', this.onProductScroll.bind(this));
+      }
+    });
+  }
+
+  onProductScroll(event: any) {
+    const target = event.target;
+    if (target.scrollTop + target.clientHeight >= target.scrollHeight - 10 && (this.productPagination.totalItems > this.products.length)) {
+      this.getAllProductsPaged();
+    }
+  }
+
   getAllProductsPaged() {
-    this._productService.getAllPaged(0, 9999999).subscribe(data => {
-      this.products = data.items!;
+    this._productService.getAllPaged(this.productPagination.pageIndex, this.productPagination.pageSize).subscribe(data => {
+      this.productPagination.totalItems = data.totalItems!;
+
+      const newProducts = data.items ?? [];
+      this.products = this.products.length > 0 ? [...this.products, ...newProducts] : newProducts;
+
+      if (this.productPagination.totalItems > this.products.length) {
+        this.productPagination.pageIndex++;
+      }
+
     });
   }
 

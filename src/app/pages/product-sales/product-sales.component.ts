@@ -29,7 +29,17 @@ export class ProductSalesComponent implements OnInit {
   productId: number | undefined
   dateFrom: Date | undefined
   dateTo: Date | undefined
-  products: ProductData[]
+  products: ProductData[] = []
+
+  productPagination: {
+    pageIndex: number;
+    pageSize: number;
+    totalItems: number;
+  } = {
+    pageIndex: 0,
+    pageSize: 20,
+    totalItems: 0
+  }
   
   constructor(
     private _productService: ProductService, 
@@ -60,9 +70,33 @@ export class ProductSalesComponent implements OnInit {
     });
   }
 
-  getAllProductsPaged() { // use separate call or use paginated ng select
-    this._productService.getAllPaged(0, 99999999).subscribe(data => {
-      this.products = data.items!;
+  onProductSelectOpened() {
+    setTimeout(() => {
+      const panel = document.querySelector('.mat-select-panel');
+      if (panel) {
+        panel.addEventListener('scroll', this.onProductScroll.bind(this));
+      }
+    });
+  }
+
+  onProductScroll(event: any) {
+    const target = event.target;
+    if (target.scrollTop + target.clientHeight >= target.scrollHeight - 10 && (this.productPagination.totalItems > this.products.length)) {
+      this.getAllProductsPaged();
+    }
+  }
+
+  getAllProductsPaged() {
+    this._productService.getAllPaged(this.productPagination.pageIndex, this.productPagination.pageSize).subscribe(data => {
+      this.productPagination.totalItems = data.totalItems!;
+
+      const newProducts = data.items ?? [];
+      this.products = this.products.length > 0 ? [...this.products, ...newProducts] : newProducts;
+
+      if (this.productPagination.totalItems > this.products.length) {
+        this.productPagination.pageIndex++;
+      }
+
     });
   }
 

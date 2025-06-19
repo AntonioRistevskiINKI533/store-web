@@ -2,7 +2,11 @@
 
   <mat-form-field appearance="outline">
     <mat-label>Product</mat-label>
-    <mat-select [(ngModel)]="productId" [formControlName]="'product'">
+    <mat-select
+      [(ngModel)]="productId"
+      [formControlName]="'product'"
+      (openedChange)="onProductSelectOpened()">
+
       <mat-option *ngFor="let product of products" [value]="product.id">
         {{ product.name }}
       </mat-option>
