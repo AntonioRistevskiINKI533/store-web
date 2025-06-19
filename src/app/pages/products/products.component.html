@@ -8,7 +8,11 @@
 
   <mat-form-field appearance="outline">
     <mat-label>Company</mat-label>
-    <mat-select [(ngModel)]="companyId" [formControlName]="'company'">
+    <mat-select
+      [(ngModel)]="companyId"
+      [formControlName]="'company'"
+      (openedChange)="onCompanySelectOpened()">
+      
       <mat-option *ngFor="let company of companies" [value]="company.id">
         {{ company.name }}
       </mat-option>
