@@ -29,12 +29,12 @@
 
   <button (click)="getAllForPieChart('pricePerUnit')" mat-raised-button color="primary">
     <mat-icon>search</mat-icon>
-    Пребарај
+    Search
   </button>
   
   <button (click)="searchForm.reset(); productId = undefined; dateFrom = undefined; dateTo = undefined" mat-raised-button color="primary">
     <mat-icon>clear</mat-icon>
-    Ресетирај филтри
+    Reset filters
   </button>
 
 </form>
@@ -51,20 +51,20 @@
 
 <button (click)="getAllForPieChart('profit')" mat-raised-button color="primary">
   <mat-icon>attach_money</mat-icon>
-  Профит
+  Profit
 </button>
 
 <button (click)="getAllForPieChart('sumOfTotalSalePrice')" mat-raised-button color="primary">
   <mat-icon>money</mat-icon>
-  Приход
+  Revenue
 </button>
 
 <button (click)="getAllForPieChart('sumOfSales')" mat-raised-button color="primary">
   <mat-icon>transform</mat-icon>
-  Број на трансакции
+  Number of Transactions
 </button>
 
 <button (click)="getAllForPieChart('sumOfUnits')" mat-raised-button color="primary">
   <mat-icon>laptop</mat-icon>
-  Продаени единици
+  Sold Units
 </button>
