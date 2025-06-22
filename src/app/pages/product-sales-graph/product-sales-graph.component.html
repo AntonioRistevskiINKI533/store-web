@@ -1,0 +1,70 @@
+<form  [formGroup]="searchForm" #searchNgForm="ngForm">
+
+  <mat-form-field appearance="outline">
+    <mat-label>Product</mat-label>
+    <mat-select
+      [(ngModel)]="productId"
+      [formControlName]="'product'"
+      (openedChange)="onProductSelectOpened()">
+
+      <mat-option *ngFor="let product of products" [value]="product.id">
+        {{ product.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Date from</mat-label>
+    <input matInput [matDatepicker]="pickerFrom" [formControlName]="'dateFrom'" [(ngModel)]="dateFrom">
+    <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+    <mat-datepicker #pickerFrom></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Date to</mat-label>
+    <input matInput [matDatepicker]="pickerTo" [formControlName]="'dateTo'" [(ngModel)]="dateTo">
+    <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+    <mat-datepicker #pickerTo></mat-datepicker>
+  </mat-form-field>
+
+  <button (click)="getAllForPieChart('pricePerUnit')" mat-raised-button color="primary">
+    <mat-icon>search</mat-icon>
+    Пребарај
+  </button>
+  
+  <button (click)="searchForm.reset(); productId = undefined; dateFrom = undefined; dateTo = undefined" mat-raised-button color="primary">
+    <mat-icon>clear</mat-icon>
+    Ресетирај филтри
+  </button>
+
+</form>
+
+<!--The content below is only a placeholder and can be replaced.-->
+<div id="chart">
+  <apx-chart
+    [series]="chartOptions.series!"
+    [chart]="chartOptions.chart!"
+    [labels]="chartOptions.labels!"
+    [responsive]="chartOptions.responsive!"
+  ></apx-chart>
+</div>
+
+<button (click)="getAllForPieChart('profit')" mat-raised-button color="primary">
+  <mat-icon>attach_money</mat-icon>
+  Профит
+</button>
+
+<button (click)="getAllForPieChart('sumOfTotalSalePrice')" mat-raised-button color="primary">
+  <mat-icon>money</mat-icon>
+  Приход
+</button>
+
+<button (click)="getAllForPieChart('sumOfSales')" mat-raised-button color="primary">
+  <mat-icon>transform</mat-icon>
+  Број на трансакции
+</button>
+
+<button (click)="getAllForPieChart('sumOfUnits')" mat-raised-button color="primary">
+  <mat-icon>laptop</mat-icon>
+  Продаени единици
+</button>

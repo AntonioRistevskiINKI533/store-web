@@ -46,6 +46,7 @@ import { ProductSalesComponent } from './pages/product-sales/product-sales.compo
 import { AddProductSaleComponent } from './pages/product-sales/add-product-sale/add-product-sale.component';
 import { EditProductSaleComponent } from './pages/product-sales/edit-product-sale/edit-product-sale.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ProductSalesGraphComponent } from './pages/product-sales-graph/product-sales-graph.component';
 
 export const MY_DATE_FORMATS = {
   parse: {
@@ -77,7 +78,8 @@ export const MY_DATE_FORMATS = {
     EditProductComponent,
     ProductSalesComponent,
     AddProductSaleComponent,
-    EditProductSaleComponent
+    EditProductSaleComponent,
+    ProductSalesGraphComponent
   ],
   imports: [
     BrowserModule,
@@ -101,8 +103,6 @@ export const MY_DATE_FORMATS = {
     MatTabsModule,
     MatDialogModule,
     MatSnackBarModule,
-    //CanvasJSAngularChartsModule,
-    //Client,
     MatDatepickerModule,
     MatNativeDateModule,
     MatProgressSpinnerModule

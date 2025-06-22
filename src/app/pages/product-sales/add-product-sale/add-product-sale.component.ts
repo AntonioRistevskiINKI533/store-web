@@ -44,7 +44,7 @@ export class AddProductSaleComponent implements OnInit {
       product:[null, [Validators.required]],
       date: [null],
       time: [null],
-      pricePerUnit: [null, [Validators.required]],
+      pricePerUnit: [null],
       soldAmount: [null, [Validators.required]],
     })
   }

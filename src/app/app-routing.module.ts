@@ -7,6 +7,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { CompaniesComponent } from './pages/companies/companies.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductSalesComponent } from './pages/product-sales/product-sales.component';
+import { ProductSalesGraphComponent } from './pages/product-sales-graph/product-sales-graph.component';
 
 const routes: Routes = [
   { path:'', redirectTo: 'login', pathMatch: 'full'},
@@ -17,6 +18,7 @@ const routes: Routes = [
     { path:'companies', component:CompaniesComponent },
     { path:'products', component:ProductsComponent },
     { path:'productSales', component:ProductSalesComponent },
+    { path:'productSalesGraph', component:ProductSalesGraphComponent}
   ]},
 ];
 
