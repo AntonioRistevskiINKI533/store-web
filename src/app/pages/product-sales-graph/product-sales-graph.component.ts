@@ -105,45 +105,53 @@ export class ProductSalesGraphComponent implements OnInit {
   }
 
   getAllProductsPaged() {
-    this._productSaleService.getAllPaged(this.productPagination.pageIndex, this.productPagination.pageSize).subscribe(data => {
-      this.productPagination.totalItems = data.totalItems!;
+    this._productSaleService.getAllPaged(this.productPagination.pageIndex, this.productPagination.pageSize).subscribe({
+      next: (data) => {
+        this.productPagination.totalItems = data.totalItems!;
 
-      const newProducts = data.items ?? [];
-      this.products = this.products.length > 0 ? [...this.products, ...newProducts] : newProducts;
+        const newProducts = data.items ?? [];
+        this.products = this.products.length > 0 ? [...this.products, ...newProducts] : newProducts;
 
-      if (this.productPagination.totalItems > this.products.length) {
-        this.productPagination.pageIndex++;
+        if (this.productPagination.totalItems > this.products.length) {
+          this.productPagination.pageIndex++;
+        }
+      },
+      error: (err) => {
+        this._snackBarHelper.error('Error fetching products');
       }
-
     });
   }
 
   getAllForPieChart(column: string) {
-    this._productSaleService.getAllProductSaleSums(this.dateFrom, this.dateTo).subscribe((data) => {
-
-      if (!data || data.length === 0) {
-        this._snackBarHelper.error('No data available for the selected period.');
-      }
-
-      this.chartOptions.series! = [];
-      this.chartOptions.labels! = [];
-
-      for (var i = 0; i < data!.length; i++) {
-
-        if (column == "sumOfSales") {
-          this.chartOptions.series!.push(data![i].sumOfSales as number & { x: any; y: any; fillColor?: string | undefined; strokeColor?: string | undefined; meta?: any; goals?: any; } & [number, number | null] & [number, (number | null)[]]);
-        }
-        else if (column == "sumOfTotalSalePrice") {
-          this.chartOptions.series!.push(data![i].sumOfTotalSalePrice as number & { x: any; y: any; fillColor?: string | undefined; strokeColor?: string | undefined; meta?: any; goals?: any; } & [number, number | null] & [number, (number | null)[]]);
-        }
-        else if (column == "sumOfUnits") {
-          this.chartOptions.series!.push(data![i].sumOfUnits as number & { x: any; y: any; fillColor?: string | undefined; strokeColor?: string | undefined; meta?: any; goals?: any; } & [number, number | null] & [number, (number | null)[]]);
+    this._productSaleService.getAllProductSaleSums(this.dateFrom, this.dateTo).subscribe({
+      next: (data) => {
+        if (!data || data.length === 0) {
+          this._snackBarHelper.error('No data available for the selected period.');
         }
 
-        this.chartOptions.labels!.push(data![i].name);
-      }
+        this.chartOptions.series! = [];
+        this.chartOptions.labels! = [];
+
+        for (var i = 0; i < data!.length; i++) {
+
+          if (column == "sumOfSales") {
+            this.chartOptions.series!.push(data![i].sumOfSales as number & { x: any; y: any; fillColor?: string | undefined; strokeColor?: string | undefined; meta?: any; goals?: any; } & [number, number | null] & [number, (number | null)[]]);
+          }
+          else if (column == "sumOfTotalSalePrice") {
+            this.chartOptions.series!.push(data![i].sumOfTotalSalePrice as number & { x: any; y: any; fillColor?: string | undefined; strokeColor?: string | undefined; meta?: any; goals?: any; } & [number, number | null] & [number, (number | null)[]]);
+          }
+          else if (column == "sumOfUnits") {
+            this.chartOptions.series!.push(data![i].sumOfUnits as number & { x: any; y: any; fillColor?: string | undefined; strokeColor?: string | undefined; meta?: any; goals?: any; } & [number, number | null] & [number, (number | null)[]]);
+          }
+
+          this.chartOptions.labels!.push(data![i].name);
+        }
       
-      this.chart.render();
+        this.chart.render();
+      },
+      error: (err) => {
+        this._snackBarHelper.error('Error fetching product sales data');
+      }
     });
   }
 }

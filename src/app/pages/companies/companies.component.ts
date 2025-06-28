@@ -33,9 +33,14 @@ export class CompaniesComponent {
   }
 
   getAllCompaniesPaged() {
-    this._companyService.getAllPaged(this.paginator.pageIndex, this.paginator.pageSize).subscribe(data => {
-      this.dataSource = new MatTableDataSource<CompanyData>(data.items!);
-      this.totalItems = data.totalItems!;
+    this._companyService.getAllPaged(this.paginator.pageIndex, this.paginator.pageSize).subscribe({
+      next: data => {
+        this.dataSource = new MatTableDataSource<CompanyData>(data.items!);
+        this.totalItems = data.totalItems!;
+      },
+      error: err => {
+        console.error('Error fetching companies:');
+      }
     });
   }
 

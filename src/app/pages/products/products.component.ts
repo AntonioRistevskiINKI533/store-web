@@ -63,9 +63,14 @@ export class ProductsComponent implements OnInit {
   }
 
   getAllProductsPaged() {
-    this._productService.getAllPaged(this.paginator.pageIndex, this.paginator.pageSize, this.companyId, this.productName).subscribe(data => {
-      this.dataSource = new MatTableDataSource<ProductData>(data.items!);
-      this.totalItems = data.totalItems!;
+    this._productService.getAllPaged(this.paginator.pageIndex, this.paginator.pageSize, this.companyId, this.productName).subscribe({
+      next: data => {
+        this.dataSource = new MatTableDataSource<ProductData>(data.items!);
+        this.totalItems = data.totalItems!;
+      },
+      error: err => {
+        console.error('Error fetching products');
+      }
     });
   }
 
@@ -86,16 +91,20 @@ export class ProductsComponent implements OnInit {
   }
 
   getAllCompaniesPaged() {
-    this._companyService.getAllPaged(this.companyPagination.pageIndex, this.companyPagination.pageSize).subscribe(data => {
-      this.companyPagination.totalItems = data.totalItems!;
+    this._companyService.getAllPaged(this.companyPagination.pageIndex, this.companyPagination.pageSize).subscribe({
+      next: data => {
+        this.companyPagination.totalItems = data.totalItems!;
 
-      const newCompanies = data.items ?? [];
-      this.companies = this.companies.length > 0 ? [...this.companies, ...newCompanies] : newCompanies;
+        const newCompanies = data.items ?? [];
+        this.companies = this.companies.length > 0 ? [...this.companies, ...newCompanies] : newCompanies;
 
-      if (this.companyPagination.totalItems > this.companies.length) {
-        this.companyPagination.pageIndex++;
+        if (this.companyPagination.totalItems > this.companies.length) {
+          this.companyPagination.pageIndex++;
+        }
+      },
+      error: err => {
+        console.error('Error fetching companies');
       }
-
     });
   }
 

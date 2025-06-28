@@ -114,16 +114,20 @@ export class EditProductSaleComponent implements OnInit {
   }
 
   getAllProductsPaged() {
-    this._productService.getAllPaged(this.productPagination.pageIndex, this.productPagination.pageSize).subscribe(data => {
-      this.productPagination.totalItems = data.totalItems!;
+    this._productService.getAllPaged(this.productPagination.pageIndex, this.productPagination.pageSize).subscribe({
+      next: data => {
+        this.productPagination.totalItems = data.totalItems!;
 
-      const newProducts = data.items ?? [];
-      this.products = this.products.length > 0 ? [...this.products, ...newProducts] : newProducts;
+        const newProducts = data.items ?? [];
+        this.products = this.products.length > 0 ? [...this.products, ...newProducts] : newProducts;
 
-      if (this.productPagination.totalItems > this.products.length) {
-        this.productPagination.pageIndex++;
+        if (this.productPagination.totalItems > this.products.length) {
+          this.productPagination.pageIndex++;
+        }
+      },
+      error: err => {
+        this._snackBarHelper.error('Error fetching products');
       }
-
     });
   }
 

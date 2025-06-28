@@ -45,8 +45,13 @@ export class ProfileComponent implements OnInit {
   }
 
   getProfile(){
-    this._userService.getProfile().subscribe(data => {
-      this.userData = data;
+    this._userService.getProfile().subscribe({
+      next: data => {
+        this.userData = data;
+      },
+      error: err => {
+        this._snackBarHelper.error('Error fetching profile');
+      }
     });
   }
 
@@ -66,8 +71,13 @@ export class ProfileComponent implements OnInit {
   }
 
   getAllRoles() {
-    this._roleService.getAll().subscribe(data => {
-      this.roles = data;
+    this._roleService.getAll().subscribe({
+      next: data => {
+        this.roles = data;
+      },
+      error: err => {
+        this._snackBarHelper.error('Error fetching roles');
+      }
     });
   }
 

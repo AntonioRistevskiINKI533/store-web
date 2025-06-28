@@ -103,16 +103,20 @@ export class EditProductComponent implements OnInit {
   }
 
   getAllCompaniesPaged() {
-    this._companyService.getAllPaged(this.companyPagination.pageIndex, this.companyPagination.pageSize).subscribe(data => {
-      this.companyPagination.totalItems = data.totalItems!;
+    this._companyService.getAllPaged(this.companyPagination.pageIndex, this.companyPagination.pageSize).subscribe({
+      next: data => {
+        this.companyPagination.totalItems = data.totalItems!;
 
-      const newCompanies = data.items ?? [];
-      this.companies = this.companies.length > 0 ? [...this.companies, ...newCompanies] : newCompanies;
+        const newCompanies = data.items ?? [];
+        this.companies = this.companies.length > 0 ? [...this.companies, ...newCompanies] : newCompanies;
 
-      if (this.companyPagination.totalItems > this.companies.length) {
-        this.companyPagination.pageIndex++;
+        if (this.companyPagination.totalItems > this.companies.length) {
+          this.companyPagination.pageIndex++;
+        }
+      },
+      error: err => {
+        this._snackBarHelper.error('Error fetching companies');
       }
-
     });
   }
 

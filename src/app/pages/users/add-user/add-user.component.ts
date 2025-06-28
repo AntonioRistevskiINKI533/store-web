@@ -68,8 +68,13 @@ export class AddUserComponent implements OnInit {
   }
 
   getAllRoles() {
-    this._roleService.getAll().subscribe(data => {
-      this.roles = data;
+    this._roleService.getAll().subscribe({
+      next: data => {
+        this.roles = data;
+      },
+      error: err => {
+        this._snackBarHelper.error('Error fetching roles');
+      }
     });
   }
 

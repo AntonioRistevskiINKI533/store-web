@@ -9,6 +9,7 @@ import { DeleteComponent } from '../dashboards/delete/delete.component';
 import { ProductSaleService } from 'src/app/services/product-sale-service';
 import { AddProductSaleComponent } from './add-product-sale/add-product-sale.component';
 import { EditProductSaleComponent } from './edit-product-sale/edit-product-sale.component';
+import { SnackBarHelper } from 'src/app/helpers/snack-bar.helper';
 
 @Component({
   selector: 'app-product-sales',
@@ -45,7 +46,8 @@ export class ProductSalesComponent implements OnInit {
     private _productService: ProductService, 
     private _productSaleService: ProductSaleService, 
     private _formBuilder: FormBuilder,
-    private _dialog: MatDialog
+    private _dialog: MatDialog,
+    private _snackBarHelper: SnackBarHelper
     ) 
     { }
 
@@ -64,9 +66,14 @@ export class ProductSalesComponent implements OnInit {
   }
 
   getAllProductSalesPaged() {
-    this._productSaleService.getAllPaged(this.paginator.pageIndex, this.paginator.pageSize, this.dateFrom, this.dateTo, this.productId).subscribe(data => {
-      this.dataSource = new MatTableDataSource<ProductData>(data.items!);
-      this.totalItems = data.totalItems!;
+    this._productSaleService.getAllPaged(this.paginator.pageIndex, this.paginator.pageSize, this.dateFrom, this.dateTo, this.productId).subscribe({
+      next: data => {
+        this.dataSource = new MatTableDataSource<ProductData>(data.items!);
+        this.totalItems = data.totalItems!;
+      },
+      error: err => {
+        this._snackBarHelper.error('Error fetching product sales');
+      }
     });
   }
 
@@ -87,16 +94,19 @@ export class ProductSalesComponent implements OnInit {
   }
 
   getAllProductsPaged() {
-    this._productService.getAllPaged(this.productPagination.pageIndex, this.productPagination.pageSize).subscribe(data => {
-      this.productPagination.totalItems = data.totalItems!;
+    this._productService.getAllPaged(this.productPagination.pageIndex, this.productPagination.pageSize).subscribe({
+      next: data => {
+        this.productPagination.totalItems = data.totalItems!;
 
-      const newProducts = data.items ?? [];
-      this.products = this.products.length > 0 ? [...this.products, ...newProducts] : newProducts;
+        const newProducts = data.items ?? [];
+        this.products = this.products.length > 0 ? [...this.products, ...newProducts] : newProducts;
 
-      if (this.productPagination.totalItems > this.products.length) {
-        this.productPagination.pageIndex++;
+        if (this.productPagination.totalItems > this.products.length) {
+          this.productPagination.pageIndex++;
+        }
+      }, error: err => {
+        this._snackBarHelper.error('Error fetching products');
       }
-
     });
   }
 

@@ -9,6 +9,7 @@ import { UserService } from 'src/app/services/user-service';
 import { AddUserComponent } from './add-user/add-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { DeleteComponent } from '../dashboards/delete/delete.component';
+import { SnackBarHelper } from 'src/app/helpers/snack-bar.helper';
 
 @Component({
   selector: 'app-users',
@@ -34,7 +35,8 @@ export class UsersComponent implements OnInit {
     private _userService:UserService, 
     private _roleService:RoleService, 
     private _formBuilder:FormBuilder,
-    private _dialog: MatDialog
+    private _dialog: MatDialog,
+    private _snackBarHelper: SnackBarHelper
     ) 
     { }
 
@@ -52,15 +54,25 @@ export class UsersComponent implements OnInit {
   }
 
   getAllUsersPaged() {
-    this._userService.getAllPaged(this.paginator.pageIndex, this.paginator.pageSize, this.fullName, this.roleId).subscribe(data => {
-      this.dataSource = new MatTableDataSource<UserData>(data.items!);
-      this.totalItems = data.totalItems!;
+    this._userService.getAllPaged(this.paginator.pageIndex, this.paginator.pageSize, this.fullName, this.roleId).subscribe({
+      next: data => {
+        this.dataSource = new MatTableDataSource<UserData>(data.items!);
+        this.totalItems = data.totalItems!;
+      },
+      error: err => {
+        this._snackBarHelper.error('Error fetching users');
+      }
     });
   }
 
   getAllRoles() {
-    this._roleService.getAll().subscribe(data => {
-      this.roles = data;
+    this._roleService.getAll().subscribe({
+      next: data => {
+        this.roles = data;
+      },
+      error: err => {
+        this._snackBarHelper.error('Error fetching roles');
+      }
     });
   }
 
