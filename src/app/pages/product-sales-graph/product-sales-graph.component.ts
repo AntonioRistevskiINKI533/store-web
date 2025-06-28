@@ -9,6 +9,7 @@ import {
   ApexChart,
 } from "ng-apexcharts";
 import { ProductSaleService } from 'src/app/services/product-sale-service';
+import { SnackBarHelper } from 'src/app/helpers/snack-bar.helper';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -48,6 +49,7 @@ export class ProductSalesGraphComponent implements OnInit {
   constructor(
     private _productSaleService: ProductSaleService, 
     private _formBuilder: FormBuilder,
+    private _snackBarHelper: SnackBarHelper
     ) 
     { 
       this.chartOptions = {
@@ -102,7 +104,7 @@ export class ProductSalesGraphComponent implements OnInit {
     }
   }
 
-    getAllProductsPaged() {
+  getAllProductsPaged() {
     this._productSaleService.getAllPaged(this.productPagination.pageIndex, this.productPagination.pageSize).subscribe(data => {
       this.productPagination.totalItems = data.totalItems!;
 
@@ -116,22 +118,29 @@ export class ProductSalesGraphComponent implements OnInit {
     });
   }
 
-  getAllForPieChart(column: string){
-    this._productSaleService.getAllPaged(0, 9999999, this.dateFrom, this.dateTo, this.productId).subscribe((data) => {
+  getAllForPieChart(column: string) {
+    this._productSaleService.getAllProductSaleSums(this.dateFrom, this.dateTo).subscribe((data) => {
+
+      if (!data || data.length === 0) {
+        this._snackBarHelper.error('No data available for the selected period.');
+      }
 
       this.chartOptions.series! = [];
       this.chartOptions.labels! = [];
 
-      for (var i = 0; i < data.items!.length; i++) {
+      for (var i = 0; i < data!.length; i++) {
 
-        if (column == "pricePerUnit") {
-          this.chartOptions.series!.push(data.items![i].pricePerUnit as number & { x: any; y: any; fillColor?: string | undefined; strokeColor?: string | undefined; meta?: any; goals?: any; } & [number, number | null] & [number, (number | null)[]]);
+        if (column == "sumOfSales") {
+          this.chartOptions.series!.push(data![i].sumOfSales as number & { x: any; y: any; fillColor?: string | undefined; strokeColor?: string | undefined; meta?: any; goals?: any; } & [number, number | null] & [number, (number | null)[]]);
         }
-        else if (column == "soldAmount") {
-          this.chartOptions.series!.push(data.items![i].soldAmount as number & { x: any; y: any; fillColor?: string | undefined; strokeColor?: string | undefined; meta?: any; goals?: any; } & [number, number | null] & [number, (number | null)[]]);
+        else if (column == "sumOfTotalSalePrice") {
+          this.chartOptions.series!.push(data![i].sumOfTotalSalePrice as number & { x: any; y: any; fillColor?: string | undefined; strokeColor?: string | undefined; meta?: any; goals?: any; } & [number, number | null] & [number, (number | null)[]]);
+        }
+        else if (column == "sumOfUnits") {
+          this.chartOptions.series!.push(data![i].sumOfUnits as number & { x: any; y: any; fillColor?: string | undefined; strokeColor?: string | undefined; meta?: any; goals?: any; } & [number, number | null] & [number, (number | null)[]]);
         }
 
-        this.chartOptions.labels!.push(data.items![i].productName);
+        this.chartOptions.labels!.push(data![i].name);
       }
       
       this.chart.render();

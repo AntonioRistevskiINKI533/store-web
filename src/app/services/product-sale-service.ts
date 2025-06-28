@@ -1,6 +1,6 @@
 import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
-import { ActionResult, AddProductSaleRequest, ApiClient, ProductSaleData, ProductSaleDataPagedModel, UpdateProductSaleRequest } from "../api/client";
+import { ActionResult, AddProductSaleRequest, ApiClient, ProductSaleData, ProductSaleDataPagedModel, ProductSaleSumsData, UpdateProductSaleRequest } from "../api/client";
 
 @Injectable({
     providedIn: 'root'
@@ -38,6 +38,10 @@ export class ProductSaleService {
 
     removeProductSale(productSaleId: number | undefined): Observable<ActionResult> {
         return this.apiClient.removeProductSale(productSaleId);
+    }
+
+    getAllProductSaleSums(dateFrom: Date | undefined = undefined, dateTo: Date | undefined = undefined): Observable<ProductSaleSumsData[]> {
+        return this.apiClient.getAllProductSaleSums(dateFrom, dateTo);
     }
 
 }
