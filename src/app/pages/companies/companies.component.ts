@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
@@ -7,6 +7,7 @@ import { CompanyService } from 'src/app/services/company-service';
 import { DeleteComponent } from '../dashboards/delete/delete.component';
 import { AddCompanyComponent } from './add-company/add-company.component';
 import { EditCompanyComponent } from './edit-company/edit-company.component';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-companies',
@@ -15,17 +16,29 @@ import { EditCompanyComponent } from './edit-company/edit-company.component';
 })
 export class CompaniesComponent {
 
+  @ViewChild('searchNgForm') searchNgForm: NgForm;
+  searchForm: FormGroup;
+    
   displayedColumns: string[] = ['name', 'address', 'phone', 'button'];
   dataSource = new MatTableDataSource<CompanyData>();
-  totalItems: number
+  totalItems: number;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
+  name: string | undefined;
+
   constructor(
-    private _companyService: CompanyService, 
+    private _companyService: CompanyService,
+    private _formBuilder: FormBuilder,
     private _dialog: MatDialog
     ) 
     { }
+
+  ngOnInit(): void {
+    this.searchForm = this._formBuilder.group({
+      name: [''],
+    })
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -33,7 +46,7 @@ export class CompaniesComponent {
   }
 
   getAllCompaniesPaged() {
-    this._companyService.getAllPaged(this.paginator.pageIndex, this.paginator.pageSize).subscribe({
+    this._companyService.getAllPaged(this.paginator.pageIndex, this.paginator.pageSize, this.name).subscribe({
       next: data => {
         this.dataSource = new MatTableDataSource<CompanyData>(data.items!);
         this.totalItems = data.totalItems!;

@@ -22,8 +22,8 @@ export class CompanyService {
         return this.apiClient.getCompany(companyId);
     }
 
-    getAllPaged(pageIndex: number | undefined, pageSize: number | undefined): Observable<CompanyDataPagedModel> {
-        return this.apiClient.getAllCompaniesPaged(pageIndex, pageSize);
+    getAllPaged(pageIndex: number | undefined, pageSize: number | undefined, name: string | undefined = undefined): Observable<CompanyDataPagedModel> {
+        return this.apiClient.getAllCompaniesPaged(pageIndex, pageSize, name);
     }
 
     removeCompany(companyId: number | undefined): Observable<ActionResult> {

@@ -197,9 +197,10 @@ export class ApiClient {
     /**
      * @param pageIndex (optional) 
      * @param pageSize (optional) 
+     * @param name (optional) 
      * @return Success
      */
-    getAllCompaniesPaged(pageIndex: number | undefined, pageSize: number | undefined): Observable<CompanyDataPagedModel> {
+    getAllCompaniesPaged(pageIndex: number | undefined, pageSize: number | undefined, name: string | undefined): Observable<CompanyDataPagedModel> {
         let url_ = this.baseUrl + "/Company/GetAllCompaniesPaged?";
         if (pageIndex === null)
             throw new Error("The parameter 'pageIndex' cannot be null.");
@@ -209,6 +210,10 @@ export class ApiClient {
             throw new Error("The parameter 'pageSize' cannot be null.");
         else if (pageSize !== undefined)
             url_ += "pageSize=" + encodeURIComponent("" + pageSize) + "&";
+        if (name === null)
+            throw new Error("The parameter 'name' cannot be null.");
+        else if (name !== undefined)
+            url_ += "name=" + encodeURIComponent("" + name) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
